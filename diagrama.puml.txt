@@ -1,0 +1,91 @@
+@startuml
+
+package Model {
+class "Agendamento" as ag {
++CpfDoPaciente
++DataDaConsulta
++HoraInicial
++HoraFinal
+}
+class agb as "AgendamentoBuilder"
+class pc as "Paciente" {
++Cpf
++Nome
++DataDeNascimento
+}
+class pcb as "  PacienteBuilder  "
+}
+
+package Controller {
+class "AgendamentoController" as agc {
++AgendarConsulta()
++CancelarConsulta()
++GetAgendamentos()
+}
+class pcc as "PacienteController" {
++IncluirPaciente()
++ExcluirPaciente()
++GetPacientes()
+}
+}
+
+package View {
+
+class "PacienteView" as pv {
++CadastrarPaciente()
++ExcluirPaciente()
++ListarPacientes()
+}
+
+class "AgendamentoView" as av {
++AgendarConsulta()
++CancelarAgendamento()
++ListarAgenda()
+}
+
+class "UserInterface" as ui {
++ReadInput()
+}
+}
+
+package Data {
+
+package NonPersistent {
+class "PacienteDao" as pd {
++Add()
++Delete()
++GetAll()
+}
+class "AgendamentoDao" as ad {
++Add()
++Delete()
++GetAll()
+}
+class "Data" as dt {
+objeto Singleton que mantém o contexto dos dados
+}
+}
+
+pcb o-down- pc
+agb o-down- ag
+
+ui *-down- av
+ui *-down- pv
+
+pcc *-- pd
+agc *-- ad
+
+dt "1" *-- "n" pc
+dt "1" *-- "n" ag
+
+pv *-- pcc
+av *-- agc
+
+
+pv *--  pcb
+av *-- agb
+
+pd *-- dt
+ad *-- dt
+
+@enduml
