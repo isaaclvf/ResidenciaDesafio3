@@ -16,9 +16,10 @@ namespace Desafio1.Controllers
                 var agendamento = ab.Build();
                 _idao.Add(agendamento);
             }
-            catch (Exception e)
+            catch (Exception e) when (e is not Agendamento.InvalidAgendamentoException)
             {
-                throw new Agendamento.InvalidAgendamentoException(e.Message);
+                Console.Error.WriteLine($"{e.Message}\n{e}");
+                throw;
             }
         }
 
@@ -28,9 +29,10 @@ namespace Desafio1.Controllers
             {
                 _idao.Delete(ab.Cpf, ab.DataDaConsulta, ab.HoraInicial);
             }
-            catch (Exception e)
+            catch (Exception e) when (e is not Agendamento.InvalidAgendamentoException)
             {
-                throw new Agendamento.InvalidAgendamentoException(e.Message);
+                Console.Error.WriteLine($"{e.Message}\n{e}");
+                throw;
             }
         }
 

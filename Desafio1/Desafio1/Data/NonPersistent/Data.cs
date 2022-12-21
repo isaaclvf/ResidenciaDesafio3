@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace Desafio1.Data.NonPersistent
     {
 
         private readonly HashSet<Paciente> pacientes = new();
-        private readonly SortedSet<Agendamento> agendamentos = new();
+        private readonly SortedSet<Agendamento> agendamentos = new(new Agendamento.AgendamentoComparer());
 
         // The Singleton's constructor should always be private to prevent
         // direct construction calls with the `new` operator.
@@ -54,12 +55,12 @@ namespace Desafio1.Data.NonPersistent
 
         public bool DeleteAgendamento(ulong cpf, DateTime date, ushort hour)
         {
+
             var tmp = agendamentos
-                .First(x => x.CpfDoPaciente == cpf && x.DataDaConsulta == date && x.HoraInicial == hour);
+                .FirstOrDefault(x => x.CpfDoPaciente == cpf && x.DataDaConsulta == date && x.HoraInicial == hour);
             if (tmp is not null)
                 return agendamentos.Remove(tmp);
-            else
-                return false;
+            return false;
         }
 
         public IEnumerable<Agendamento> GetAllAgendamentos()
@@ -83,6 +84,11 @@ namespace Desafio1.Data.NonPersistent
                 agendamentos.Remove(a);
 
             return true;
+        }
+
+        public bool IsAgendamentoCadastrado(Agendamento a)
+        {
+            return agendamentos.Contains(a);
         }
     }
 }

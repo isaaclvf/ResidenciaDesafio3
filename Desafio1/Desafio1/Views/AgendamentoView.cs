@@ -24,13 +24,13 @@ namespace Desafio1.Views
                 ac.AgendarConsulta(ab);
                 Console.WriteLine("\nSUCESSO:\tConsulta Agendada com Sucesso!\n");
             }
-            catch (Paciente.InvalidPacienteException e)
+            catch (Agendamento.InvalidAgendamentoException e)
             {
                 Console.WriteLine($"\nERRO:\t{e.Message}\n");
             }
             catch (Exception)
             {
-                Console.WriteLine("\nERRO:\tErro inesperado ocorreu\n");
+                Console.WriteLine("\nFATAL:\tErro inesperado ocorreu\n");
             }
         }
 
@@ -44,13 +44,13 @@ namespace Desafio1.Views
                 ac.CancelarConsulta(ab);
                 Console.WriteLine("\nSUCESSO:\tConsulta Cancelada com Sucesso!\n");
             }
-            catch (Paciente.InvalidPacienteException e)
+            catch (Agendamento.InvalidAgendamentoException e)
             {
                 Console.WriteLine($"\nERRO:\t{e.Message}\n");
             }
             catch (Exception)
             {
-                Console.WriteLine("\nERRO:\tErro inesperado ocorreu\n");
+                Console.WriteLine("\nFATAL:\tErro inesperado ocorreu\n");
             }
         }
 
@@ -76,10 +76,10 @@ namespace Desafio1.Views
 
         private static void ImprimirLista(IEnumerable<Agendamento> list)
         {
-            var border = new string('-', 57);
+            var border = new string('-', 65);
 
             Console.WriteLine(border);
-            Console.WriteLine($"{"Data",4} {"H.Ini",0} {"H.Fim",0} {"Tempo",0} {"Nome",-25} {"Dt.Nasc.",0}");
+            Console.WriteLine($"{"Data",7} {"H.Ini",8} {"H.Fim",0} {"Tempo",0} {"Nome",-25} {"Dt.Nasc.",9}");
             Console.WriteLine(border);
 
             DateTime? date = null;
@@ -91,7 +91,7 @@ namespace Desafio1.Views
                 else
                     date = a.DataDaConsulta;
 
-                Console.WriteLine($"{(printdate ? date?.ToString("d") : ""),0} {a.HoraInicial.String(),0} {a.HoraFinal.String(),0} {((ushort)(a.HoraFinal - a.HoraInicial)).String()} {a.Paciente?.Nome,-25} {a.Paciente.DataDeNascimento:d}");
+                Console.WriteLine($"{(printdate ? date?.ToString("d") : new string(' ', 10)),0} {a.HoraInicial.String(),2} {a.HoraFinal.String(),0} {a.HoraInicial.TimeSpan(a.HoraFinal)} {a.Paciente?.Nome,-25} {a.Paciente.DataDeNascimento:d}");
             }
             Console.WriteLine();
         }
@@ -154,11 +154,22 @@ namespace Desafio1.Views
             * As mensagens a serem impressas na interação com o usuário.
             * Cada mensagem representa uma propriedade da classe Agendamento.
             */
-            protected string[] _messages = { "CPF:" };
+            protected string[] _messages = 
+                { 
+                "CPF:",
+                "Data da Consulta:",
+                "Hora Inicial:"
+            };
 
             protected Action<AgendamentoBuilder, string>[] _actions = {
                 // Set CPF
-                (cB, line) => { cB.SetCpf(line); }
+                (cB, line) => { cB.SetCpf(line); },
+
+                 // Set Data da Consulta
+                (cB, line) => { cB.SetDataDaConsulta(line); },
+
+                // Set Hora Inicial
+                (cB, line) => { cB.SetHoraInicial(line); }
             };
         }
 

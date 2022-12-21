@@ -54,5 +54,13 @@ namespace Desafio1.Models
                     _ => lstDigit == 11 - mod,
                 };
         }
+
+        public static string String(this ulong val)
+        {
+            var tmp = val.ToString();
+            if (tmp.Length < 11)
+                return $"{new String('0', 11 - tmp.Length)}{tmp}";
+            return tmp;
+        }
     }
 }

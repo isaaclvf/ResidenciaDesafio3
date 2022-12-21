@@ -10,23 +10,31 @@ namespace Desafio1.Data.NonPersistent
         public void Add(Agendamento a)
         {
             if(!data.CpfExists(a.CpfDoPaciente))
-                throw new Agendamento.InvalidAgendamentoException("Cpf do Paciente", a.CpfDoPaciente, "Valor informado não possui cadastro");
+                throw new Agendamento.InvalidAgendamentoException("Cpf do Paciente informado não possui cadastro");
 
-            if (!data.AddAgendamento(a))
-                throw new Exception("Agendamento já cadastrado");
+            if (data.IsAgendamentoCadastrado(a))
+                throw new Agendamento.InvalidAgendamentoException("Agendamento já cadastrado");
 
             var tmp = data.GetPacienteByCpf(a.CpfDoPaciente);
-            tmp.AgendamentoFuturo = a;
+            try
+            {
+                tmp.AgendamentoFuturo = a;
+            }catch(Exception)
+            {
+                throw new Agendamento.InvalidAgendamentoException("Paciente Informado já possui agendamento futuro");
+            }
             a.Paciente = tmp;
+
+            data.AddAgendamento(a);
         }
 
         public void Delete(ulong cpf, DateTime dataConsulta, ushort horaInicial)
         {
             if(!Agendamento.IsDateFuture(dataConsulta, horaInicial))
-                throw new Exception("Agendamento não é data futura e, portanto, não pode ser cancelado");
+                throw new Agendamento.InvalidAgendamentoException("Agendamento não é data futura e, portanto, não pode ser cancelado");
 
             if (!data.DeleteAgendamento(cpf, dataConsulta, horaInicial))
-                throw new Exception("Agendamento não cadastrado");
+                throw new Agendamento.InvalidAgendamentoException("Agendamento não cadastrado");
 
         }
 

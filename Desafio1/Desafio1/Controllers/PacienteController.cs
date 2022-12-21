@@ -16,9 +16,10 @@ namespace Desafio1.Controllers
                 var paciente = pb.Build();
                 _idao.Add(paciente);
             }
-            catch (Exception)
+            catch (Exception e) when (e is not Paciente.InvalidPacienteException)
             {
-                throw new Paciente.InvalidPacienteException("Paciente já cadastrado");
+                Console.Error.WriteLine($"{e.Message}\n{e}");
+                throw;
             }
         }
 
@@ -28,9 +29,10 @@ namespace Desafio1.Controllers
             {
                 _idao.Delete(pb.Cpf);
             }
-            catch (Exception)
+            catch (Exception e) when (e is not Paciente.InvalidPacienteException)
             {
-                throw new Paciente.InvalidPacienteException("Paciente não Cadastrado");
+                Console.Error.WriteLine($"{e.Message}\n{e}");
+                throw;
             }
         }
 

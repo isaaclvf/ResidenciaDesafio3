@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Desafio1.Data.NonPersistent;
+using System;
 using System.Linq;
+using System.Text;
 
 namespace Desafio1.Models
 {
@@ -28,7 +30,24 @@ namespace Desafio1.Models
 
         public static ushort Minuto(this ushort val) => (ushort)(val % 100);
 
-        public static string String(this ushort val) => $"{val.Hora()}:{val.Minuto()}";
+        public static string String(this ushort val) => $"{Format(val.Hora())}:{Format(val.Minuto())}";
+
+        private static string Format(ushort hora) 
+        {
+            if (hora < 10)
+                return $"0{hora}";
+            else
+            {
+                return hora.ToString();
+            }
+        }
+
+        public static string TimeSpan(this ushort e, ushort b)
+        {
+            var tmp = DateTime.ParseExact(b.String(), "t", null) 
+                - DateTime.ParseExact(e.String(), "t", null);
+            return $"{Format((ushort)tmp.Hours)}:{Format((ushort)tmp.Minutes)}";
+        }
 
     }
 }

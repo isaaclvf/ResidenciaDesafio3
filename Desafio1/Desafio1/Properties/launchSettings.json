@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Desafio1": {
+      "commandName": "Project",
+      "commandLineArgs": " <\"$(ProjectDir)InFiles/testAgendamento2.txt\" >\"$(ProjectDir)OutFiles/testAgendamento2-out.txt\" 2>&1"
+    }
+  }
+}

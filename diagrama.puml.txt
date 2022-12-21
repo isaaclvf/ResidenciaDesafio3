@@ -1,68 +1,89 @@
 @startuml
 
-package Model {
+package Model #feb40f {
 class "Agendamento" as ag {
 +CpfDoPaciente
 +DataDaConsulta
 +HoraInicial
 +HoraFinal
 }
-class agb as "AgendamentoBuilder"
+class agb as "AgendamentoBuilder"{
+Valida dados de Agendamento
+}
 class pc as "Paciente" {
 +Cpf
 +Nome
 +DataDeNascimento
 }
-class pcb as "  PacienteBuilder  "
+class pcb as "  PacienteBuilder  " {
+Valida dados de Paciente
+}
 }
 
-package Controller {
+package Controller #7FFF00 {
+
 class "AgendamentoController" as agc {
+Recebe os dados de AgendamentoView e os envia para 
+função correspondente na camada de Dados 
 +AgendarConsulta()
 +CancelarConsulta()
 +GetAgendamentos()
 }
 class pcc as "PacienteController" {
+Recebe os dados de PacienteView e os envia para 
+função correspondente na camada de Dados 
 +IncluirPaciente()
 +ExcluirPaciente()
 +GetPacientes()
 }
 }
 
-package View {
+package View #D84437 {
 
 class "PacienteView" as pv {
+Interage com o usuário para realizar as 
+funcionalidades referentes a classe Paciente
 +CadastrarPaciente()
 +ExcluirPaciente()
-+ListarPacientes()
++ListarPacientesPorCpf()
++ListarPacientesPorNome()
 }
 
 class "AgendamentoView" as av {
+Interage com o usuário para realizar as 
+funcionalidades referentes a classe Agendamento
 +AgendarConsulta()
 +CancelarAgendamento()
-+ListarAgenda()
++ListarAgendaInteira()
++ListarAgendaParcial()
 }
 
 class "UserInterface" as ui {
-+ReadInput()
+Interage com o usuário por meio do console
++Start()
 }
 }
 
-package Data {
+package Data #F9E4BC {
 
 package NonPersistent {
+
 class "PacienteDao" as pd {
+Responsável pelo acesso aos dados dos Pacientes
 +Add()
 +Delete()
 +GetAll()
 }
 class "AgendamentoDao" as ad {
+Responsável pelo acesso aos dados dos Agendamentos
 +Add()
 +Delete()
 +GetAll()
 }
 class "Data" as dt {
-objeto Singleton que mantém o contexto dos dados
+objeto Singleton que mantém o contexto dos dados.
+**É necessário para que PacienteDao e AgendamentoDao
+tenham acesso aos mesmos dados**
 }
 }
 

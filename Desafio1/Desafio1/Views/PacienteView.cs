@@ -24,7 +24,7 @@ namespace Desafio1.Views
                 Console.WriteLine($"\nERRO:\t{e.Message}\n");
             }catch(Exception)
             {
-                Console.WriteLine("\nERRO:\tErro inesperado ocorreu\n");
+                Console.WriteLine("\nFATAL:\tErro inesperado ocorreu\n");
             }
         }
 
@@ -43,7 +43,7 @@ namespace Desafio1.Views
             }
             catch (Exception)
             {
-                Console.WriteLine("\nERRO:\tErro inesperado ocorreu\n");
+                Console.WriteLine("\nFATAL:\tErro inesperado ocorreu\n");
             }
         }
 
@@ -71,10 +71,10 @@ namespace Desafio1.Views
             foreach (var p in list)
             {
                 var idade = new DateTime(now.Subtract(p.DataDeNascimento).Ticks).Year - 1;
-                Console.WriteLine($"{p.Cpf,-12} {p.Nome,-25} {p.DataDeNascimento,0:d} {idade,7}");
+                Console.WriteLine($"{p.Cpf.String(),-12} {p.Nome,-25} {p.DataDeNascimento,0:d} {idade,7}");
                 var tmp = p.AgendamentoFuturo;
                 if(tmp is not null)
-                    Console.WriteLine($"{" ", -12} {$"Agendado para: {tmp.DataDaConsulta.Date}\n{tmp.HoraInicial / 100}:{tmp.HoraInicial % 100} às {tmp.HoraFinal / 100}:{tmp.HoraFinal % 100}", -25}");
+                    Console.WriteLine($"{" ", -12} {$"Agendado para: {tmp.DataDaConsulta:d}\n{tmp.HoraInicial.Hora()}:{tmp.HoraInicial.Minuto()} às {tmp.HoraFinal.Hora()}:{tmp.HoraFinal.Minuto()}", -25}");
             }
             Console.WriteLine();
         }

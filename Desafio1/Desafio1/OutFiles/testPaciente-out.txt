@@ -1,0 +1,84 @@
+Menu Principal
+1-Cadastro de pacientes
+2-Agenda
+3-Fim
+Entrada Inv lida. Digite Novamente
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+Nome:
+CPF:
+Data de Nascimento:
+
+SUCESSO:	Paciente Cadastrado com Sucesso!
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+Nome:
+CPF:
+Data de Nascimento:
+
+SUCESSO:	Paciente Cadastrado com Sucesso!
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+---------------------------------------------------------
+CPF          Nome                       Dt.Nasc.    Idade
+---------------------------------------------------------
+06360232812  Pedro Amaral              01/01/2000      22
+74752305208  Augusto da Silva          01/01/1993      29
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+---------------------------------------------------------
+CPF          Nome                       Dt.Nasc.    Idade
+---------------------------------------------------------
+74752305208  Augusto da Silva          01/01/1993      29
+06360232812  Pedro Amaral              01/01/2000      22
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+CPF:
+
+SUCESSO:	Paciente Exclu¡do com Sucesso!
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+---------------------------------------------------------
+CPF          Nome                       Dt.Nasc.    Idade
+---------------------------------------------------------
+06360232812  Pedro Amaral              01/01/2000      22
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+Menu Principal
+1-Cadastro de pacientes
+2-Agenda
+3-Fim

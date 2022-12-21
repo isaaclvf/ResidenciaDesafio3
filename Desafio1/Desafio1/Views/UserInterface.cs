@@ -92,7 +92,7 @@ namespace Desafio1.Views
 
         private static void ListagemDeAgendas()
         {
-            Console.WriteLine("Apresentar a agenda T-Toda ou P-Periodo: P"); //Data inicial: 01 / 01 / 2022\nData final: 05 / 01 / 2022");
+            Console.WriteLine("Apresentar a agenda T-Toda ou P-Periodo: P");
 
             var tmp = GetInput();
 
@@ -109,7 +109,6 @@ namespace Desafio1.Views
                     ListagemDeAgendas();
                     break;
             }
-            Agenda();
         }
 
         private static char GetInput()
