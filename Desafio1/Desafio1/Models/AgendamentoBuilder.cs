@@ -24,7 +24,7 @@ namespace Desafio1.Models
             }
             catch (Exception e)
             {
-                throw new Agendamento.InvalidAgendamentoException("Cpf do Paciente", value, e.Message);
+                throw new Agendamento.InvalidAgendamentoException(e.Message);
             }
         }
 
@@ -37,14 +37,15 @@ namespace Desafio1.Models
                 if(Agendamento.IsDateFuture(date, agendamento.HoraInicial))
                     agendamento.DataDaConsulta = date;
                 else
-                    throw new Agendamento.InvalidAgendamentoException("Data da Consulta", value, "Data deve ser futura");
+                    throw new Agendamento.InvalidAgendamentoException("Data da Consulta deve ser futura");
             }
             catch (FormatException)
             {
-                throw new Agendamento.InvalidAgendamentoException("Data da Consulta", value, "Formato de data inválido");
+                throw new Agendamento.InvalidAgendamentoException("Formato de data informado é inválido");
             }
         }
 
+        // Valida e preenche Hora Inicial do Agendamento
         public void SetHoraInicial(string val)
         {
             try
@@ -55,14 +56,15 @@ namespace Desafio1.Models
                     if (Agendamento.IsDateFuture(agendamento.DataDaConsulta, tmp))
                         agendamento.HoraInicial = tmp;
                     else
-                        throw new Agendamento.InvalidAgendamentoException("Data da Consulta", val, "Data deve ser futura");
+                        throw new Agendamento.InvalidAgendamentoException("Data da Consulta deve ser futura");
                 }
-            }catch(Exception ex)
+            } catch (Exception e) when (e is FormatException || e is OverflowException)
             {
-                throw new Agendamento.InvalidAgendamentoException("Hora Inicial", val, ex.Message);
+                throw new Agendamento.InvalidAgendamentoException("Formato de Hora informado é inválido");
             }
         }
 
+        // Valida e preenche Hora Final do Agendamento
         public void SetHoraFinal(string val)
         {
             try
@@ -73,15 +75,16 @@ namespace Desafio1.Models
                     if (tmp > agendamento.HoraInicial)
                         agendamento.HoraFinal = tmp;
                     else
-                        throw new Agendamento.InvalidAgendamentoException("Hora Final", val, "Hora Final deve ser posterior à Hora Inicial");
+                        throw new Agendamento.InvalidAgendamentoException("Hora Final deve ser posterior à Hora Inicial");
                 }
             }
-            catch (Exception ex)
+            catch (Exception e) when (e is FormatException || e is OverflowException)
             {
-                throw new Agendamento.InvalidAgendamentoException("Hora Final", val, ex.Message);
+                throw new Agendamento.InvalidAgendamentoException("Formato de Hora informado é inválido");
             }
         }
 
+        // Cria um objeto Agendamento
         public Agendamento Build()
         {
             var tmp = this.agendamento;

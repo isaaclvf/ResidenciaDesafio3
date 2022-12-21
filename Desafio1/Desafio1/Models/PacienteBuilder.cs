@@ -18,7 +18,7 @@ namespace Desafio1.Models
             }
             else
             {
-                throw new Paciente.InvalidPacienteException("Nome", nome, "Nome do Cilente deve ter ao menos 5 caracteres");
+                throw new Paciente.InvalidPacienteException("Nome do Paciente deve ter ao menos 5 caracteres");
             }
             return this;
         }
@@ -33,7 +33,7 @@ namespace Desafio1.Models
             }
             catch (Exception e)
             {
-                throw new Paciente.InvalidPacienteException("Cpf", value, e.Message);
+                throw new Paciente.InvalidPacienteException(e.Message);
             }
             return this;
         }
@@ -55,19 +55,20 @@ namespace Desafio1.Models
             }
             catch (FormatException)
             {
-                throw new Paciente.InvalidPacienteException("Data de Nascimento", value, "Formato de data inválido");
+                throw new Paciente.InvalidPacienteException("Formato de data informado é inválido");
             }
             catch (Exception)
             {
-                throw new Paciente.InvalidPacienteException("Data de Nascimento", value, "Idade do cliente deve ser maior ou igual a 13");
+                throw new Paciente.InvalidPacienteException("Idade do cliente deve ser maior ou igual a 13");
             }
             return this;
         }
 
+        // Cria um objeto Paciente
         public Paciente Build()
         {
             var tmp = this.paciente;
-            // this.paciente = new();
+            this.paciente = new();
             return tmp;
         }
     }

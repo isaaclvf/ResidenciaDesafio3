@@ -7,6 +7,7 @@ namespace Desafio1.Models
 {
     public static class HoraExtension
     {
+        // Valida se uma string tem o formato de hora válido
         public static bool IsValidHora(this string val)
         {
             if (val.Length != 4)
@@ -25,13 +26,14 @@ namespace Desafio1.Models
                 };
 
         }
-
+        // Pegar apenas a hora
         public static ushort Hora(this ushort val) => (ushort) (val / 100);
-
+        // Pegar apenas os minutos
         public static ushort Minuto(this ushort val) => (ushort)(val % 100);
-
+        // Converter hora para String
         public static string String(this ushort val) => $"{Format(val.Hora())}:{Format(val.Minuto())}";
-
+       
+        // Formatar hora do jeito apropriado
         private static string Format(ushort hora) 
         {
             if (hora < 10)
@@ -41,7 +43,7 @@ namespace Desafio1.Models
                 return hora.ToString();
             }
         }
-
+        // Subtrair duas horas e pegar o tempo
         public static string TimeSpan(this ushort e, ushort b)
         {
             var tmp = DateTime.ParseExact(b.String(), "t", null) 
