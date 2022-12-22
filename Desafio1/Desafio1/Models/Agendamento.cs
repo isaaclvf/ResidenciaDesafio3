@@ -1,7 +1,5 @@
-﻿using Desafio1.Data.NonPersistent;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Numerics;
 
 namespace Desafio1.Models
 {

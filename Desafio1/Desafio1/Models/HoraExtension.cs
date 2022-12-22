@@ -1,7 +1,4 @@
-﻿using Desafio1.Data.NonPersistent;
-using System;
-using System.Linq;
-using System.Text;
+﻿using System;
 
 namespace Desafio1.Models
 {
