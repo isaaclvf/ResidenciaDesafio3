@@ -7,15 +7,18 @@ namespace Desafio1.Models
 {
     public class Agendamento
     {
-        public const ushort Begin = 830;
+        // Horários Limites do Consultório
+        public const ushort Begin = 0830;
         public const ushort End = 1900;
         public ulong CpfDoPaciente { get; set; }
         public DateTime DataDaConsulta { get; set; }
         public ushort HoraInicial { get; set; }
         public ushort HoraFinal { get; set; }
 
+        // Agendamento tem um Paciente
         public Paciente Paciente { get; set; }
 
+        // Método estático que determina se uma data é futura ou não
         public static bool IsDateFuture(DateTime date, ushort hour)
         {
             var now = DateTime.Now;
@@ -33,6 +36,7 @@ namespace Desafio1.Models
                 || (this.HoraInicial < a.HoraFinal && a.HoraFinal <= this.HoraFinal));
         }
 
+        // Não se deve utilizar uma Estrutura Hash, apenas estruturas ordenadas
         public override int GetHashCode()
         {
             throw new NotImplementedException();
@@ -61,6 +65,7 @@ namespace Desafio1.Models
             }
         }
 
+        // Deve-se implementar um comparador de Agendamentos para mantê-los ordenados por Data e Horario Inicial de forma crescente
         public class AgendamentoComparer : IComparer<Agendamento>
         {
             public int Compare(Agendamento x, Agendamento y)

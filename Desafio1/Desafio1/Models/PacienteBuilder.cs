@@ -3,6 +3,7 @@ using System.Globalization;
 
 namespace Desafio1.Models
 {
+    // Valida as propriedades da classe Paciente
     public class PacienteBuilder
     {
         private Paciente paciente = new();

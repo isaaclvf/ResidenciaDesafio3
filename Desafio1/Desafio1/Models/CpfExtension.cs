@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Desafio1.Models
 {
+    // Cria métodos de Extensão sobre a classe ULong para a manipulação de CPFs
     public static class CpfExtension
     {
         public static bool IsValidCpf(this string val)

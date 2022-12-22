@@ -9,7 +9,10 @@ namespace Desafio1.Models
 
         public DateTime DataDeNascimento { get; set; }
 
+        // Backing Field
         private Agendamento _agendamento;
+
+        // Paciente pode ter zero ou um agendamento futuro
         public Agendamento AgendamentoFuturo
         {
             get

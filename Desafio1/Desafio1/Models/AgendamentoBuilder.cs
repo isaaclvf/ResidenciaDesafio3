@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace Desafio1.Models
 {
+    // Valida as propriedades da classe Agendamento
     public class AgendamentoBuilder
     {
 

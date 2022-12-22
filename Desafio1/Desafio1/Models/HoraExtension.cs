@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Desafio1.Models
 {
+    // Cria métodos de Extensão sobre as String e UShort para a manipulação de Horas
     public static class HoraExtension
     {
         // Valida se uma string tem o formato de hora válido
