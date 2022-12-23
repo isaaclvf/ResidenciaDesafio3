@@ -14,7 +14,7 @@ namespace Desafio1.Models
             var tmp = ushort.Parse(val);
 
             if (tmp > Agendamento.End || tmp < Agendamento.Begin)
-                throw new Exception($"Hora deve ser de {Agendamento.Begin} até ${Agendamento.End}");
+                throw new Exception($"Hora deve ser de {Agendamento.Begin.String()} até {Agendamento.End.String()}");
 
             return
                 (tmp % 100) switch

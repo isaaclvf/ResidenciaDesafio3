@@ -10,17 +10,19 @@ namespace Desafio1.Data.NonPersistent
         public void Add(Paciente p)
         {
             if (!data.AddPaciente(p))
-                throw new Exception("Paciente já cadastrado");
+                throw new Paciente.InvalidPacienteException("Paciente já cadastrado");
         }
 
         public void Delete(ulong cpf)
         {
             var p = data.GetPacienteByCpf(cpf);
-            if(p.AgendamentoFuturo is not null)
-                throw new Exception("Paciente possui agendamento futuro");
+            if(p is null)
+                throw new Paciente.InvalidPacienteException("Paciente não cadastrado");
 
-            if (!data.DeletePaciente(p))
-                throw new Exception("Paciente não cadastrado");
+            if (p.AgendamentoFuturo is not null)
+                throw new Paciente.InvalidPacienteException("Paciente possui agendamento futuro");
+
+            data.DeletePaciente(p);
 
             data.DeleteAllAgendamentosFromPaciente(p);
         }

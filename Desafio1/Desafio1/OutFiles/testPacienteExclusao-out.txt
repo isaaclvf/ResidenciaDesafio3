@@ -1,0 +1,100 @@
+Menu Principal
+1-Cadastro de pacientes
+2-Agenda
+3-Fim
+Entrada Inv†lida. Digite Novamente
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+Nome:
+CPF:
+Data de Nascimento:
+
+SUCESSO:	Paciente Cadastrado com Sucesso!
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+Nome:
+CPF:
+Data de Nascimento:
+
+SUCESSO:	Paciente Cadastrado com Sucesso!
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+CPF:
+
+ERRO:	Paciente n∆o cadastrado
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+CPF:
+
+SUCESSO:	Paciente Exclu°do com Sucesso!
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+Menu Principal
+1-Cadastro de pacientes
+2-Agenda
+3-Fim
+Agenda
+1-Agendar consulta
+2-Cancelar agendamento
+3-Listar agenda
+4-Voltar p / menu principal
+CPF:
+Data da Consulta:
+Hora Inicial:
+Hora Final:
+
+SUCESSO:	Consulta Agendada com Sucesso!
+
+Agenda
+1-Agendar consulta
+2-Cancelar agendamento
+3-Listar agenda
+4-Voltar p / menu principal
+Menu Principal
+1-Cadastro de pacientes
+2-Agenda
+3-Fim
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+CPF:
+
+ERRO:	Paciente possui agendamento futuro
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+Menu Principal
+1-Cadastro de pacientes
+2-Agenda
+3-Fim

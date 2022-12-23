@@ -1,0 +1,47 @@
+Menu Principal
+1-Cadastro de pacientes
+2-Agenda
+3-Fim
+Entrada Inv lida. Digite Novamente
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+Nome:
+Nome do Paciente deve ter ao menos 5 caracteres
+Nome:
+CPF:
+Cpf do Paciente deve ter d¡gitos verficadores v lidos
+CPF:
+Data de Nascimento:
+Formato de data informado ‚ inv lido
+Data de Nascimento:
+
+SUCESSO:	Paciente Cadastrado com Sucesso!
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+Nome:
+CPF:
+Data de Nascimento:
+Idade do cliente deve ser maior ou igual a 13
+Data de Nascimento:
+
+ERRO:	Paciente j  cadastrado
+
+Menu do Cadastro de Pacientes
+1-Cadastrar novo paciente
+2-Excluir paciente
+3-Listar pacientes(ordenado por CPF)
+4-Listar pacientes(ordenado por nome)
+5-Voltar p / menu principal
+Menu Principal
+1-Cadastro de pacientes
+2-Agenda
+3-Fim

@@ -11,8 +11,7 @@ namespace Desafio1.Views
         private readonly AC agendarConsulta = new();
         private readonly CA cancelarAgendamento = new();
 
-        private readonly LA1 getDataInicial = new();
-        private readonly LA2 getDataFinal = new();
+        private readonly LA getDatas = new();
 
         private readonly AgendamentoController ac = new();
         public void AgendarConsulta()
@@ -61,16 +60,13 @@ namespace Desafio1.Views
 
         public void ListarAgendaParcial()
         {
-            AgendamentoBuilder b1 = new();
-            AgendamentoBuilder b2 = new();
+            ListagemAgendamentoBuilder b = new();
 
-            getDataInicial.Read(b1);
-
-            getDataFinal.Read(b2);
+            getDatas.Read(b);
 
             var tmp = ac.GetAgendamentos()
-                .SkipWhile(x => x.DataDaConsulta < b1.DataDaConsulta)
-                .TakeWhile(x => x.DataDaConsulta >= b2.DataDaConsulta);
+                .SkipWhile(x => x.DataDaConsulta < b.D1)
+                .TakeWhile(x => x.DataDaConsulta <= b.D2);
             ImprimirLista(tmp);
         }
 
@@ -89,7 +85,10 @@ namespace Desafio1.Views
                 if (a.DataDaConsulta.Equals(date))
                     printdate = false;
                 else
+                {
                     date = a.DataDaConsulta;
+                    printdate = true;
+                }
 
                 Console.WriteLine($"{(printdate ? date?.ToString("d") : new string(' ', 10)),0} {a.HoraInicial.String(),2} {a.HoraFinal.String(),0} {a.HoraInicial.TimeSpan(a.HoraFinal)} {a.Paciente?.Nome,-25} {a.Paciente.DataDeNascimento:d}");
             }
@@ -173,7 +172,7 @@ namespace Desafio1.Views
             };
         }
 
-        private class LA1 : Input<AgendamentoBuilder>
+        private class LA : Input<ListagemAgendamentoBuilder>
         {
             /* 
             * As mensagens a serem impressas na interação com o usuário.
@@ -184,53 +183,44 @@ namespace Desafio1.Views
                 get => _messages;
             }
 
-            protected override Action<AgendamentoBuilder, string>[] Actions
+            protected override Action<ListagemAgendamentoBuilder, string>[] Actions
             {
                 get => _actions;
             }
 
 
             private readonly string[] _messages =  {
-                "Data Inicial:"
+                "Data Inicial:",
+                "Data Final:"
             };
 
-            private readonly Action<AgendamentoBuilder, string>[] _actions =
+            private readonly Action<ListagemAgendamentoBuilder, string>[] _actions =
                 {
 
                 // Set Data da Consulta
-                (cB, line) => { cB.SetDataDaConsulta(line); }
+                (cB, line) => { cB.SetD1(line); },
+                (cB, line) => { cB.SetD2(line); }
 
             };
         }
 
-        private class LA2 : Input<AgendamentoBuilder>
+        private class ListagemAgendamentoBuilder
         {
-            /* 
-            * As mensagens a serem impressas na interação com o usuário.
-            * Cada mensagem representa uma propriedade da classe Agendamento.
-            */
-            protected override string[] Messages
+            private readonly AgendamentoBuilder d1 = new();
+            private readonly AgendamentoBuilder d2 = new();
+
+            public DateTime D1 { get => d1.DataDaConsulta; }
+            public DateTime D2 { get => d2.DataDaConsulta; }
+
+            public void SetD1(string s)
             {
-                get => _messages;
+                d1.SetDataDaConsulta(s);
             }
 
-            protected override Action<AgendamentoBuilder, string>[] Actions
+            public void SetD2(string s)
             {
-                get => _actions;
+                d2.SetDataDaConsulta(s);
             }
-
-
-            private readonly string[] _messages =  {
-                "Data Final:"
-            };
-
-            private readonly Action<AgendamentoBuilder, string>[] _actions =
-                {
-
-                // Set Data da Consulta
-                (cB, line) => { cB.SetDataDaConsulta(line); }
-
-            };
         }
     }
 }

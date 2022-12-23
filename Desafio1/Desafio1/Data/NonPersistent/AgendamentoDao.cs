@@ -13,7 +13,7 @@ namespace Desafio1.Data.NonPersistent
                 throw new Agendamento.InvalidAgendamentoException("Cpf do Paciente informado não possui cadastro");
 
             if (data.IsAgendamentoCadastrado(a))
-                throw new Agendamento.InvalidAgendamentoException("Agendamento já cadastrado");
+                throw new Agendamento.InvalidAgendamentoException("Horário já preenchido");
 
             var tmp = data.GetPacienteByCpf(a.CpfDoPaciente);
             try

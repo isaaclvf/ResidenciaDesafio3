@@ -74,7 +74,7 @@ namespace Desafio1.Views
                 Console.WriteLine($"{p.Cpf.String(),-12} {p.Nome,-25} {p.DataDeNascimento,0:d} {idade,7}");
                 var tmp = p.AgendamentoFuturo;
                 if(tmp is not null)
-                    Console.WriteLine($"{" ", -12} {$"Agendado para: {tmp.DataDaConsulta:d}\n{tmp.HoraInicial.Hora()}:{tmp.HoraInicial.Minuto()} às {tmp.HoraFinal.Hora()}:{tmp.HoraFinal.Minuto()}", -25}");
+                    Console.WriteLine($"{" ", -12} {$"Agendado para: {tmp.DataDaConsulta:d}\n{" ",-12} {tmp.HoraInicial.String()} às {tmp.HoraFinal.String()}", -25}");
             }
             Console.WriteLine();
         }

@@ -75,7 +75,7 @@ namespace Desafio1.Data.NonPersistent
 
         public Paciente GetPacienteByCpf(ulong cpf)
         {
-            return pacientes.First(x => x.Cpf == cpf);
+            return pacientes.FirstOrDefault(x => x.Cpf == cpf);
         }
 
         public bool DeleteAllAgendamentosFromPaciente(Paciente p)
