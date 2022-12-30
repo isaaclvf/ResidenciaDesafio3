@@ -18,9 +18,11 @@ namespace Desafio1.Models
             get
             {
                 if (_agendamento == null) return null;
-                if (Agendamento.IsDateFuture(_agendamento.DataDaConsulta, _agendamento.HoraInicial))
+                // Verifica se atual agendamento futuro ainda é futuro (não passou)
+                if (Agendamento.IsDateFuture(_agendamento.DataDaConsulta, _agendamento.HorarioInicial))
                     return _agendamento;
-
+                
+                // Se o agendamento não for mais futuro, o campo vira "null"
                 _agendamento = null;
                 return _agendamento;
 
@@ -34,7 +36,8 @@ namespace Desafio1.Models
                 }
                 else
                 {
-                    if (Agendamento.IsDateFuture(_agendamento.DataDaConsulta, _agendamento.HoraInicial))
+                    // Verifica se atual agendamento futuro ainda é futuro (não passou)
+                    if (Agendamento.IsDateFuture(_agendamento.DataDaConsulta, _agendamento.HorarioInicial))
                         throw new Exception("Cliente já possui agendamento futuro");
                     else
                         _agendamento = value;
@@ -42,11 +45,14 @@ namespace Desafio1.Models
             }
         }
 
+        // Dois Pacientes são iguais, se têm o mesmo Cpf
         public override bool Equals(object obj)
         {
             return obj is Paciente p && p.Cpf == this.Cpf;
         }
 
+
+        // Como o Cpf é único entre Pacientes, o hashcode de um Paciente pode ser o hashcode de seu Cpf
         public override int GetHashCode()
         {
             return Cpf.GetHashCode();
@@ -54,25 +60,7 @@ namespace Desafio1.Models
 
         public class InvalidPacienteException : Exception
         {
-            public string Campo { get; set; }
-            public object Val { get; set; }
-            public string Mensagem { get; set; }
-
             public InvalidPacienteException(string message) : base(message) { }
-
-            public InvalidPacienteException(string fieldName, object val, string message)
-                : base(MakeMessage(fieldName, val, message))
-            {
-                Campo = fieldName;
-                Val = val;
-                Mensagem = message;
-
-            }
-
-            internal static string MakeMessage(string fieldName, object val, string message)
-            {
-                return $"Campo: {fieldName} Valor: {(val.ToString().Length == 0 ? "N/A" : val),5} Mensagem: {message}";
-            }
         }
     }
 }

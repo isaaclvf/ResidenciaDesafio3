@@ -29,6 +29,7 @@ namespace Desafio1.Models
         {
             try
             {
+                // Usa método de extensão em CpfExtension
                 if (value.IsValidCpf())
                     paciente.Cpf = ulong.Parse(value);
             }

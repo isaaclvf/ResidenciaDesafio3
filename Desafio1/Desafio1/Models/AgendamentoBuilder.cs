@@ -11,9 +11,10 @@ namespace Desafio1.Models
 
         private Agendamento agendamento = new();
 
+        // Propriedades só de leitura
         public ulong Cpf { get => agendamento.CpfDoPaciente; }
         public DateTime DataDaConsulta { get => agendamento.DataDaConsulta; }
-        public ushort HoraInicial { get => agendamento.HoraInicial; }
+        public ushort HorarioInicial { get => agendamento.HorarioInicial; }
 
         // Valida e preenche CPF do Paciente
         public void SetCpf(string value)
@@ -35,7 +36,8 @@ namespace Desafio1.Models
             try
             {
                 var date = DateTime.ParseExact(value, "d", new CultureInfo("pt-BR"));
-                if(Agendamento.IsDateFuture(date, agendamento.HoraInicial))
+                // Verifica se a data passada é futura
+                if (Agendamento.IsDateFuture(date, agendamento.HorarioInicial))
                     agendamento.DataDaConsulta = date;
                 else
                     throw new Agendamento.InvalidAgendamentoException("Data da Consulta deve ser futura");
@@ -51,11 +53,12 @@ namespace Desafio1.Models
         {
             try
             {
-                if (val.IsValidHora())
+                if (val.IsValidHorario())
                 {
                     var tmp = ushort.Parse(val);
+                    // Verifica se a data passada é futura
                     if (Agendamento.IsDateFuture(agendamento.DataDaConsulta, tmp))
-                        agendamento.HoraInicial = tmp;
+                        agendamento.HorarioInicial = tmp;
                     else
                         throw new Agendamento.InvalidAgendamentoException("Data da Consulta deve ser futura");
                 }
@@ -70,11 +73,11 @@ namespace Desafio1.Models
         {
             try
             {
-                if (val.IsValidHora())
+                if (val.IsValidHorario())
                 {
                     var tmp = ushort.Parse(val);
-                    if (tmp > agendamento.HoraInicial)
-                        agendamento.HoraFinal = tmp;
+                    if (tmp > agendamento.HorarioInicial)
+                        agendamento.HorarioFinal = tmp;
                     else
                         throw new Agendamento.InvalidAgendamentoException("Hora Final deve ser posterior à Hora Inicial");
                 }

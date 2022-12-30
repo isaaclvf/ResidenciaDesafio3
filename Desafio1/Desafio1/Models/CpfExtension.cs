@@ -3,18 +3,12 @@ using System.Linq;
 
 namespace Desafio1.Models
 {
-    // Cria métodos de Extensão sobre a classe ULong para a manipulação de CPFs
+    // Cria métodos de Extensão sobre as classes ULong e String para a manipulação de CPFs
     public static class CpfExtension
     {
-        public static bool IsValidCpf(this string val)
-        {
-            return ValidaCpf(val);
-        }
-
-        private static int[] Seq(int x) => Enumerable.Range(2, x).Reverse().ToArray();
 
         // Verifica se string tem formato de Cpf válido
-        private static bool ValidaCpf(string s)
+        public static bool IsValidCpf(this string s)
         {
             if (ulong.TryParse(s, out ulong _) && s.Length == 11)
             {
@@ -37,6 +31,8 @@ namespace Desafio1.Models
             throw new Exception("Cpf do Paciente deve ter 11 dígitos");
         }
 
+        private static int[] Seq(int x) => Enumerable.Range(2, x).Reverse().ToArray();
+
         // Verifica se o (penúltimo ou último - parâmetro $lst) dígito é válido
         private static bool IsDv(string s, int lst)
         {
@@ -54,6 +50,7 @@ namespace Desafio1.Models
                     _ => lstDigit == 11 - mod,
                 };
         }
+
         // Adiciona o zero antes do valor caso o cpf comece com zero
         public static string String(this ulong val)
         {

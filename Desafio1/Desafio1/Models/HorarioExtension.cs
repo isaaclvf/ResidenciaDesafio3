@@ -3,10 +3,10 @@
 namespace Desafio1.Models
 {
     // Cria métodos de Extensão sobre as String e UShort para a manipulação de Horas
-    public static class HoraExtension
+    public static class HorarioExtension
     {
         // Valida se uma string tem o formato de hora válido
-        public static bool IsValidHora(this string val)
+        public static bool IsValidHorario(this string val)
         {
             if (val.Length != 4)
                 throw new Exception("Hora deve ter quatro dígitos");
