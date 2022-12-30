@@ -4,32 +4,34 @@ using System.Collections.Generic;
 
 namespace Desafio1.Data.NonPersistent
 {
+    // Paciente Data Access Object
     public class PacienteDao
     {
-        private readonly Data data = Data.GetInstance();
+        // Referência ao contexto de Dados
+        private readonly Data _data = Data.GetInstance();
         public void Add(Paciente p)
         {
-            if (!data.AddPaciente(p))
+            if (!_data.AddPaciente(p))
                 throw new Paciente.InvalidPacienteException("Paciente já cadastrado");
         }
 
         public void Delete(ulong cpf)
         {
-            var p = data.GetPacienteByCpf(cpf);
+            var p = _data.GetPacienteByCpf(cpf);
             if(p is null)
                 throw new Paciente.InvalidPacienteException("Paciente não cadastrado");
 
             if (p.AgendamentoFuturo is not null)
                 throw new Paciente.InvalidPacienteException("Paciente possui agendamento futuro");
 
-            data.DeletePaciente(p);
+            _data.DeletePaciente(p);
 
-            data.DeleteAllAgendamentosFromPaciente(p);
+            _data.DeleteAllAgendamentosFromPaciente(p);
         }
 
         public IEnumerable<Paciente> GetAll()
         {
-            return data.GetAllPacientes();
+            return _data.GetAllPacientes();
         }
     }
 }

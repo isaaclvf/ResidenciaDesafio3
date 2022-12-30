@@ -4,18 +4,22 @@ using System;
 
 namespace Desafio1.Data.NonPersistent
 {
+    // Agendamento Data Access Object
     public class AgendamentoDao
     {
-        private readonly Data data = Data.GetInstance();
+        // Referência ao contexto de Dados
+        private readonly Data _data = Data.GetInstance();
+
         public void Add(Agendamento a)
         {
-            if(!data.CpfExists(a.CpfDoPaciente))
+            if(!_data.CpfExists(a.CpfDoPaciente))
                 throw new Agendamento.InvalidAgendamentoException("Cpf do Paciente informado não possui cadastro");
 
-            if (data.IsAgendamentoCadastrado(a))
+            if (_data.IsAgendamentoCadastrado(a))
                 throw new Agendamento.InvalidAgendamentoException("Horário já preenchido");
 
-            var tmp = data.GetPacienteByCpf(a.CpfDoPaciente);
+            // Preencher campo Agendamento Futuro do Paciente
+            var tmp = _data.GetPacienteByCpf(a.CpfDoPaciente);
             try
             {
                 tmp.AgendamentoFuturo = a;
@@ -23,9 +27,11 @@ namespace Desafio1.Data.NonPersistent
             {
                 throw new Agendamento.InvalidAgendamentoException("Paciente Informado já possui agendamento futuro");
             }
+            // Preencher campo Paciente do Agendamento
             a.Paciente = tmp;
 
-            data.AddAgendamento(a);
+            // Adicionar Agendamento ao contexto de Dados
+            _data.AddAgendamento(a);
         }
 
         public void Delete(ulong cpf, DateTime dataConsulta, ushort horaInicial)
@@ -33,14 +39,14 @@ namespace Desafio1.Data.NonPersistent
             if(!Agendamento.IsDateFuture(dataConsulta, horaInicial))
                 throw new Agendamento.InvalidAgendamentoException("Agendamento não é data futura e, portanto, não pode ser cancelado");
 
-            if (!data.DeleteAgendamento(cpf, dataConsulta, horaInicial))
+            if (!_data.DeleteAgendamento(cpf, dataConsulta, horaInicial))
                 throw new Agendamento.InvalidAgendamentoException("Agendamento não cadastrado");
 
         }
 
         public IEnumerable<Agendamento> GetAll()
         {
-            return data.GetAllAgendamentos();
+            return _data.GetAllAgendamentos();
         }
     }
 }

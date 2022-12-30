@@ -8,31 +8,29 @@ using System.Threading.Tasks;
 
 namespace Desafio1.Data.NonPersistent
 {
+    // Objeto Singleton que mantém um conjunto de Pacientes e um conjunto de Agendamentos
     public sealed class Data
     {
-
+        // Conjunto de Pacientes
         private readonly HashSet<Paciente> pacientes = new();
+        // Conjunto de Agendamentos Ordenados
         private readonly SortedSet<Agendamento> agendamentos = new(new Agendamento.AgendamentoComparer());
 
-        // The Singleton's constructor should always be private to prevent
-        // direct construction calls with the `new` operator.
+        // Construtor Privado
+        // Deve-se chamar o método GetInstance
         private Data() { }
 
-        // The Singleton's instance is stored in a static field. There there are
-        // multiple ways to initialize this field, all of them have various pros
-        // and cons. In this example we'll show the simplest of these ways,
-        // which, however, doesn't work really well in multithreaded program.
+        // Instancia única da classe, mantida em um campo de classe (static)
         private static Data _instance;
 
-        // This is the static method that controls the access to the singleton
-        // instance. On the first run, it creates a singleton object and places
-        // it into the static field. On subsequent runs, it returns the client
-        // existing object stored in the static field.
+        // Método de classe que cria a instância do objeto, caso ela não exista, e a retorna
         public static Data GetInstance()
         {
             _instance ??= new Data();
             return _instance;
         }
+
+        // Métodos Públicos para a manipulação dos Dados (Agendamentos e Pacientes)
 
         public bool AddPaciente(Paciente p)
         {
@@ -57,7 +55,7 @@ namespace Desafio1.Data.NonPersistent
         {
 
             var tmp = agendamentos
-                .FirstOrDefault(x => x.CpfDoPaciente == cpf && x.DataDaConsulta == date && x.HoraInicial == hour);
+                .FirstOrDefault(x => x.CpfDoPaciente == cpf && x.DataDaConsulta == date && x.HorarioInicial == hour);
             if (tmp is not null)
                 return agendamentos.Remove(tmp);
             return false;
