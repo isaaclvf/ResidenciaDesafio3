@@ -2,18 +2,28 @@
 using Desafio1.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Desafio1.Views
 {
     public class AgendamentoView
     {
+        // Objeto para interagir com o usuário no "Agendamento de Consultas"
         private readonly AC agendarConsulta = new();
+
+        // Objeto para interagir com o usuário no "Cancelamento de Consultas"
         private readonly CA cancelarAgendamento = new();
 
+        // Objeto para interagir com o usuário no "Listagem de Agendamentos"
         private readonly LA getDatas = new();
 
+        // Referência a camada de Controladores
         private readonly AgendamentoController ac = new();
+
+        // Ler dados de Agendamento;
+        // Tentar Agendar Consulta;
+        // Relatar Erros ou Sucesso, dependendo do que ocorrer. 
         public void AgendarConsulta()
         {
             AgendamentoBuilder ab = new();
@@ -33,6 +43,9 @@ namespace Desafio1.Views
             }
         }
 
+        // Ler entradas de Agendamento - Cancelamento: Cpf do Paciente, Data da Consulta, Horario Inicial;
+        // Tentar Cancelar Consulta;
+        // Relatar Erros ou Sucesso, dependendo do que ocorrer. 
         public void CancelarConsulta()
         {
             AgendamentoBuilder ab = new();
@@ -58,6 +71,8 @@ namespace Desafio1.Views
             ImprimirLista(ac.GetAgendamentos());
         }
 
+        // Ler entradas de Listagem de Agendamento Parcial: Data Incial, Data Final;
+        // Imprimir Listagem de Agendamentos
         public void ListarAgendaParcial()
         {
             ListagemAgendamentoBuilder b = new();
@@ -70,6 +85,7 @@ namespace Desafio1.Views
             ImprimirLista(tmp);
         }
 
+        // Imprimir Lista de Agendamentos, de acordo com o layout definido
         private static void ImprimirLista(IEnumerable<Agendamento> list)
         {
             var border = new string('-', 65);
@@ -79,9 +95,9 @@ namespace Desafio1.Views
             Console.WriteLine(border);
 
             DateTime? date = null;
-            var printdate = true;
             foreach (var a in list)
             {
+                bool printdate;
                 if (a.DataDaConsulta.Equals(date))
                     printdate = false;
                 else
@@ -90,17 +106,14 @@ namespace Desafio1.Views
                     printdate = true;
                 }
 
-                Console.WriteLine($"{(printdate ? date?.ToString("d") : new string(' ', 10)),0} {a.HoraInicial.String(),2} {a.HoraFinal.String(),0} {a.HoraInicial.TimeSpan(a.HoraFinal)} {a.Paciente?.Nome,-25} {a.Paciente.DataDeNascimento:d}");
+                Console.WriteLine($"{(printdate ? date?.ToString("d") : new string(' ', 10)),0} {a.HorarioInicial.String(),2} {a.HorarioFinal.String(),0} {a.HorarioInicial.TimeSpan(a.HorarioFinal)} {a.Paciente?.Nome,-25} {a.Paciente.DataDeNascimento:d}");
             }
             Console.WriteLine();
         }
 
+        // Classe que implementa a leitura de dados no Agendamento de Consulta
         private class AC : Input<AgendamentoBuilder>
         {
-            /* 
-            * As mensagens a serem impressas na interação com o usuário.
-            * Cada mensagem representa uma propriedade da classe Agendamento.
-            */
             protected override string[] Messages
             {
                 get => _messages;
@@ -137,6 +150,7 @@ namespace Desafio1.Views
             };
         }
 
+        // Classe que implementa a leitura de dados no Cancelamento de Consulta
         private class CA : Input<AgendamentoBuilder>
         {
             protected override string[] Messages
@@ -149,12 +163,8 @@ namespace Desafio1.Views
                 get => _actions;
             }
 
-            /* 
-            * As mensagens a serem impressas na interação com o usuário.
-            * Cada mensagem representa uma propriedade da classe Agendamento.
-            */
-            protected string[] _messages = 
-                { 
+            protected string[] _messages =
+                {
                 "CPF:",
                 "Data da Consulta:",
                 "Hora Inicial:"
@@ -172,12 +182,10 @@ namespace Desafio1.Views
             };
         }
 
+        // Classe que implementa a leitura de dados na Listagem de Agendmentos
         private class LA : Input<ListagemAgendamentoBuilder>
         {
-            /* 
-            * As mensagens a serem impressas na interação com o usuário.
-            * Cada mensagem representa uma propriedade da classe Agendamento.
-            */
+
             protected override string[] Messages
             {
                 get => _messages;
@@ -204,22 +212,28 @@ namespace Desafio1.Views
             };
         }
 
+        // Classe que valida os dados de entrada na Listagem Parcial de Agendamentos
         private class ListagemAgendamentoBuilder
         {
-            private readonly AgendamentoBuilder d1 = new();
-            private readonly AgendamentoBuilder d2 = new();
-
-            public DateTime D1 { get => d1.DataDaConsulta; }
-            public DateTime D2 { get => d2.DataDaConsulta; }
+            public DateTime D1 { get; set; }
+            public DateTime D2 { get; set; }
 
             public void SetD1(string s)
             {
-                d1.SetDataDaConsulta(s);
+                D1 = ValidateDate(s);
             }
 
             public void SetD2(string s)
             {
-                d2.SetDataDaConsulta(s);
+                D2 = ValidateDate(s);
+            }
+
+            private static DateTime ValidateDate(string value)
+            {
+
+                if (DateTime.TryParseExact(s: value, format: "d", provider: new CultureInfo("pt-BR"), style: System.Globalization.DateTimeStyles.AllowWhiteSpaces, result: out DateTime dt))
+                    return dt;
+                throw new Exception("Formato de Data Inválida");
             }
         }
     }

@@ -3,8 +3,12 @@
 
 namespace Desafio1.Views
 {
+    // Implementa a navegação por menus
+    // Ao final de uma ação (e.g. Adicionar Paciente), retorna-se ao menu Anterior (e.g. Cadastro de Pacientes)
+    // Entradas Inválidas mantém a aplicação no mesmo menu
     public class UserInterface
     {
+        // Referências a camada de Visualização 
         private readonly static PacienteView pv = new();
         private readonly static AgendamentoView av = new();
 
