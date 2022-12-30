@@ -107,10 +107,10 @@ Hora deve ser de 15 em 15 minutos
 Hora Inicial:
 Hora deve ser de 15 em 15 minutos
 Hora Inicial:
-Hora deve ser de 08:30 at‚ $19:00
+Hora deve ser de 08:30 at‚ 19:00
 Hora Inicial:
 Hora Final:
-Hora deve ser de 08:30 at‚ $19:00
+Hora deve ser de 08:30 at‚ 19:00
 Hora Final:
 
 SUCESSO:	Consulta Agendada com Sucesso!
