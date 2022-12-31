@@ -20,7 +20,10 @@ Adicionalmente, existem duas pastas:
 * __InFiles__ : _Arquivos testes_
 * __OutFiles__ : _Saída dos arquivos testes_
 
-__OBS:__ No arquivos _launchSettings.json_ da pasta __Properties__, está configurado para que a aplicação receba __stdin__ de um arquivo teste e redirecione __stdout__ e __stderr__ para outro arquivo. Ao deletar, o campo _commandLineArgs_ o programa funcionará por console novamente.
+__OBS:__ No arquivos _launchSettings.json_ da pasta __Properties__, pode-se configurar para que a aplicação receba __stdin__ de um arquivo teste e redirecione __stdout__ e __stderr__ para outro arquivo. Basta preencher o campo _commandLineArgs_ com algo como:
+```bash
+<\"$(ProjectDir)InFiles/testPacienteListagem.txt\" >\"$(ProjectDir)OutFiles/testPacienteListagem-out.txt\" 2>&1
+```
 
 ## Funcionalidades x Camadas
 A fim de auxiliar na avaliação sobre a organização do código, identifica-se, nesta seção, em qual camada cada funcionalidade requisitada foi implementada.
