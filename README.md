@@ -30,7 +30,9 @@ A fim de auxiliar na avaliação sobre a organização do código, identifica-se
 </div>
 
 ## Nomenclatura
-Os métodos, classes e variáveis foram nomeados de acordo com uma única diretriz:
-__Se o método, varável ou classe está associado diretamento a uma funcionalidade ou Entidade nomeada nos requisitos, então deverá ter o nome conforme encontra-se nos requisitos, caso contrário, terá um nome em inglês.__ <br>
-<br>
-Por exemplo, as Entidades Pacientee e Agendamento são nomeadas no documento de requisitos, portanto, as classes serão nomeadas Paciente e Agendamento respectivamente. Assim como os campos que cada entidade possue. Já, classes auxiliares, métodos privados, variáveis locais e outros derivados de requisitos não funcionais, são nomeados em inglês.
+Os métodos, classes e variáveis foram nomeados de acordo com uma única diretriz: 
+<p align="center">
+<b>Se o método, varável ou classe está associado diretamente a uma funcionalidade ou Entidade nomeada nos requisitos, então deverá ter o nome conforme encontra-se nos requisitos, caso contrário, terá um nome em inglês.</b>
+</p>
+
+Por exemplo, as Entidades Paciente e Agendamento são nomeadas no documento de requisitos, portanto, as classes serão nomeadas Paciente e Agendamento respectivamente. Assim como os campos que cada entidade possue. Já, classes auxiliares, métodos privados, variáveis locais e outros derivados de requisitos não funcionais, são nomeados em inglês.
