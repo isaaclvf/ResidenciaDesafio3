@@ -2,7 +2,7 @@
   "profiles": {
     "Desafio1": {
       "commandName": "Project",
-      "commandLineArgs": " <\"$(ProjectDir)InFiles/testPacienteListagem.txt\" >\"$(ProjectDir)OutFiles/testPacienteListagem-out.txt\" 2>&1"
+      "commandLineArgs": ""
     }
   }
 }
