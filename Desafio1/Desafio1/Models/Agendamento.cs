@@ -40,7 +40,7 @@ namespace Desafio1.Models
         // Não se deve utilizar uma Estrutura Hash, apenas estruturas ordenadas
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            return HashCode.Combine(this.CpfDoPaciente, this.DataDaConsulta, this.HorarioInicial);
         }
 
         public class InvalidAgendamentoException : Exception
