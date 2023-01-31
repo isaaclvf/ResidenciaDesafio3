@@ -51,7 +51,7 @@ namespace Desafio1.Data.NonPersistent
             return agendamentos.Add(a);
         }
 
-        public bool DeleteAgendamento(ulong cpf, DateTime date, ushort hour)
+        public bool DeleteAgendamento(string cpf, DateTime date, ushort hour)
         {
 
             var tmp = agendamentos
@@ -66,12 +66,12 @@ namespace Desafio1.Data.NonPersistent
             return agendamentos.ToList();
         }
 
-        public bool CpfExists(ulong cpf)
+        public bool CpfExists(string cpf)
         {
             return pacientes.Any(x => x.Cpf == cpf);
         }
 
-        public Paciente GetPacienteByCpf(ulong cpf)
+        public Paciente GetPacienteByCpf(string cpf)
         {
             return pacientes.FirstOrDefault(x => x.Cpf == cpf);
         }

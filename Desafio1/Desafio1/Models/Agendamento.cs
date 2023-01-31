@@ -6,9 +6,11 @@ namespace Desafio1.Models
     public class Agendamento
     {
         // Horários Limites do Consultório
-        public const ushort Begin = 0830;
-        public const ushort End = 1900;
-        public ulong CpfDoPaciente { get; set; }
+        public static ushort Begin = 0830;
+        public static ushort End = 1900;
+        public int Id { get; set; }
+
+        public string CpfDoPaciente { get; set; }
         public DateTime DataDaConsulta { get; set; }
 
         // Horários são representadas por inteiros e existem métodos de extensão em HoraExtension para as manipular
@@ -40,7 +42,7 @@ namespace Desafio1.Models
         // Não se deve utilizar uma Estrutura Hash, apenas estruturas ordenadas
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            return HashCode.Combine(this.CpfDoPaciente, this.DataDaConsulta, this.HorarioInicial);
         }
 
         public class InvalidAgendamentoException : Exception

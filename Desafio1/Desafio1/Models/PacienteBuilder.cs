@@ -8,7 +8,7 @@ namespace Desafio1.Models
     {
         private Paciente paciente = new();
 
-        public ulong Cpf { get => paciente.Cpf; }
+        public string Cpf { get => paciente.Cpf; }
 
         // Valida e preenche Nome do Paciente
         public PacienteBuilder SetNome(string nome)
@@ -31,7 +31,7 @@ namespace Desafio1.Models
             {
                 // Usa método de extensão em CpfExtension
                 if (value.IsValidCpf())
-                    paciente.Cpf = ulong.Parse(value);
+                    paciente.Cpf = value;
             }
             catch (Exception e)
             {
