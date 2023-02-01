@@ -39,7 +39,10 @@ namespace Desafio1.Models
 
             set
             {
-                if (_agendamento is null)
+                if(value is null)
+                    _agendamento = null;
+
+                else if (_agendamento is null)
                 {
                     _agendamento = value;
                 }
