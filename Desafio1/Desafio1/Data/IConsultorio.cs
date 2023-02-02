@@ -15,13 +15,13 @@ namespace Desafio1.Data
         public IEnumerable<Paciente> GetAllPacientes();
         public bool AddAgendamento(Agendamento a);
 
-        public bool DeleteAgendamento(ulong cpf, DateTime date, ushort hour);
+        public bool DeleteAgendamento(string cpf, DateTime date, ushort hour);
 
         public IEnumerable<Agendamento> GetAllAgendamentos();
 
-        public bool CpfExists(ulong cpf);
+        public bool CpfExists(string cpf);
 
-        public Paciente GetPacienteByCpf(ulong cpf);
+        public Paciente GetPacienteByCpf(string cpf);
 
         public bool DeleteAllAgendamentosFromPaciente(Paciente p);
 

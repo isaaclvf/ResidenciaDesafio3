@@ -30,7 +30,7 @@ namespace Desafio1.Data.NonPersistent
             return _context.Agendamentos.Add(a);
         }
 
-        public bool DeleteAgendamento(ulong cpf, DateTime date, ushort hour)
+        public bool DeleteAgendamento(string cpf, DateTime date, ushort hour)
         {
 
             var tmp = _context.Agendamentos
@@ -45,12 +45,12 @@ namespace Desafio1.Data.NonPersistent
             return _context.Agendamentos.ToList();
         }
 
-        public bool CpfExists(ulong cpf)
+        public bool CpfExists(string cpf)
         {
             return _context.Pacientes.Any(x => x.Cpf == cpf);
         }
 
-        public Paciente GetPacienteByCpf(ulong cpf)
+        public Paciente GetPacienteByCpf(string cpf)
         {
             return _context.Pacientes.FirstOrDefault(x => x.Cpf == cpf);
         }

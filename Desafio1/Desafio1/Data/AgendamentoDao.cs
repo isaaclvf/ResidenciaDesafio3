@@ -45,7 +45,7 @@ namespace Desafio1.Data.NonPersistent
             _consultorio.AddAgendamento(a);
         }
 
-        public void Delete(ulong cpf, DateTime dataConsulta, ushort horaInicial)
+        public void Delete(string cpf, DateTime dataConsulta, ushort horaInicial)
         {
             if(!Agendamento.IsDateFuture(dataConsulta, horaInicial))
                 throw new Agendamento.InvalidAgendamentoException("Agendamento não é data futura e, portanto, não pode ser cancelado");

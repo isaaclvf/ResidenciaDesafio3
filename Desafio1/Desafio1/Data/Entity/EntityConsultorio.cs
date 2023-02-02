@@ -49,7 +49,7 @@ namespace Desafio1.Data.Entity
             return tmp;
         }
 
-        public bool DeleteAgendamento(ulong cpf, DateTime date, ushort hour)
+        public bool DeleteAgendamento(string cpf, DateTime date, ushort hour)
         {
 
             var tmp = Agendamentos
@@ -67,12 +67,12 @@ namespace Desafio1.Data.Entity
             return Agendamentos.Include("Paciente").ToList().OrderBy(a => a, new Agendamento.AgendamentoComparer()).ToList();
         }
 
-        public bool CpfExists(ulong cpf)
+        public bool CpfExists(string cpf)
         {
             return Pacientes.Any(x => x.Cpf == cpf);
         }
 
-        public Paciente GetPacienteByCpf(ulong cpf)
+        public Paciente GetPacienteByCpf(string cpf)
         {
             return Pacientes.FirstOrDefault(x => x.Cpf == cpf);
         }

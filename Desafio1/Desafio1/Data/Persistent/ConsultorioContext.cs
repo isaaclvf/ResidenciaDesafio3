@@ -10,13 +10,14 @@ namespace Desafio1.Data.Persistent
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // TODO: .env
             optionsBuilder
                 .UseNpgsql(@$"
-                    Server=;
-                    Database=;
-                    User Id=;
-                    Password=;
-                    Port=")
+                    Server=babar.db.elephantsql.com;
+                    Database=rodhrtvh;
+                    User Id=rodhrtvh;
+                    Password=TmApvZ5D_Dw4SwU5lCwJUPy77yEfvbyF;
+                    Port=5432")
                 .UseSnakeCaseNamingConvention();
         }
 

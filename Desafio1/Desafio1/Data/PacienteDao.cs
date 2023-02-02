@@ -26,7 +26,7 @@ namespace Desafio1.Data.NonPersistent
                 throw new Paciente.InvalidPacienteException("Paciente já cadastrado");
         }
 
-        public void Delete(ulong cpf)
+        public void Delete(string cpf)
         {
             var p = _consultorio.GetPacienteByCpf(cpf);
             if(p is null)
