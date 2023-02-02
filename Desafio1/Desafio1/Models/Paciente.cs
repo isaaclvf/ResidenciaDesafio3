@@ -1,13 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Desafio1.Models
 {
     public class Paciente
     {
+        public int Id { get; set; }
         public string Nome { get; set; }
-        public ulong Cpf { get; set; }
+        public string Cpf { get; set; }
 
         public DateTime DataDeNascimento { get; set; }
+
+        public List<Agendamento> Agendamentos { get; set; }
+
+        public Paciente()
+        {
+            Agendamentos = new();
+        }
 
         // Backing Field
         private Agendamento _agendamento;
@@ -30,7 +39,10 @@ namespace Desafio1.Models
 
             set
             {
-                if (_agendamento is null)
+                if(value is null)
+                    _agendamento = null;
+
+                else if (_agendamento is null)
                 {
                     _agendamento = value;
                 }

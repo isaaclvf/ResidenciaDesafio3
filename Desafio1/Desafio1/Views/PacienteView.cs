@@ -71,7 +71,7 @@ namespace Desafio1.Views
             foreach (var p in list)
             {
                 var idade = new DateTime(now.Subtract(p.DataDeNascimento).Ticks).Year - 1;
-                Console.WriteLine($"{p.Cpf.String(),-12} {p.Nome,-25} {p.DataDeNascimento,0:d} {idade,7}");
+                Console.WriteLine($"{p.Cpf,-12} {p.Nome,-25} {p.DataDeNascimento,0:d} {idade,7}");
                 var tmp = p.AgendamentoFuturo;
                 if(tmp is not null)
                     Console.WriteLine($"{" ", -12} {$"Agendado para: {tmp.DataDaConsulta:d}\n{" ",-12} {tmp.HorarioInicial.String()} às {tmp.HorarioFinal.String()}", -25}");

@@ -12,7 +12,7 @@ namespace Desafio1.Models
         private Agendamento agendamento = new();
 
         // Propriedades só de leitura
-        public ulong Cpf { get => agendamento.CpfDoPaciente; }
+        public string Cpf { get => agendamento.CpfDoPaciente; }
         public DateTime DataDaConsulta { get => agendamento.DataDaConsulta; }
         public ushort HorarioInicial { get => agendamento.HorarioInicial; }
 
@@ -22,7 +22,7 @@ namespace Desafio1.Models
             try
             {
                 if (value.IsValidCpf())
-                    agendamento.CpfDoPaciente = ulong.Parse(value);
+                    agendamento.CpfDoPaciente = value;
             }
             catch (Exception e)
             {

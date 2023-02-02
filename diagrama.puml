@@ -66,7 +66,29 @@ Interage com o usuário por meio do console
 
 package Data #F9E4BC {
 
-package NonPersistent {
+interface "IConsultorio" as ic{
+Métodos Públicos para a manipulação dos Dados (Agendamentos e Pacientes)
+
+        +AddPaciente(Paciente): bool
+
+        +DeletePaciente(Paciente): bool
+
+        +GetAllPacientes(): IEnumerable<Paciente> 
+
+        +AddAgendamento(Agendamento): bool
+
+        +DeleteAgendamento(ulong, DateTime, ushort): bool
+
+        +GetAllAgendamentos(): IEnumerable<Agendamento> 
+
+        +CpfExists(ulong): bool
+
+        +GetPacienteByCpf(ulong): Paciente 
+
+        +DeleteAllAgendamentosFromPaciente(Paciente): bool
+
+        +IsAgendamentoCadastrado(Agendamento): bool
+}
 
 class "PacienteDao" as pd {
 Responsável pelo acesso aos dados dos Pacientes
@@ -80,11 +102,27 @@ Responsável pelo acesso aos dados dos Agendamentos
 +Delete()
 +GetAll()
 }
-class "Data" as dt {
+
+package Entity {
+
+class "EntityConsultorio" as ce {
+}
+class "EntityContext" as cc {
+Implementa a persistência pelo framework Entity
+} 
+}
+
+package NonPersistent {
+
+class "DefaultConsultorio" as dc {
+}
+
+class "DefaultContext" as dcc {
 objeto Singleton que mantém o contexto dos dados.
 **É necessário para que PacienteDao e AgendamentoDao
 tenham acesso aos mesmos dados**
 }
+
 }
 
 pcb o-down- pc
@@ -96,8 +134,10 @@ ui *-down- pv
 pcc *-- pd
 agc *-- ad
 
-dt "1" *-- "n" pc
-dt "1" *-- "n" ag
+dcc "1" *-- "n" pc
+dcc "1" *-- "n" ag
+cc "1" *-- "n" pc
+cc "1" *-- "n" ag
 
 pv *-- pcc
 av *-- agc
@@ -106,7 +146,13 @@ av *-- agc
 pv *--  pcb
 av *-- agb
 
-pd *-- dt
-ad *-- dt
+pd *-- ic
+ad *-- ic
+
+ic <-- dc
+ic <-- ce
+
+ce *-- cc
+dc *-- dcc
 
 @enduml
