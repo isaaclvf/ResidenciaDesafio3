@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Desafio1.Migrations
 {
     [DbContext(typeof(ConsultorioContext))]
-    [Migration("20230131200512_Inicial")]
+    [Migration("20230202155103_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -29,76 +29,62 @@ namespace Desafio1.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CpfDoPaciente")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("cpf_do_paciente");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("DataDaConsulta")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("data_da_consulta");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("HorarioFinal")
-                        .HasColumnType("integer")
-                        .HasColumnName("horario_final");
+                        .HasColumnType("integer");
 
                     b.Property<int>("HorarioInicial")
-                        .HasColumnType("integer")
-                        .HasColumnName("horario_inicial");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("PacienteId")
-                        .HasColumnType("integer")
-                        .HasColumnName("paciente_id");
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id")
-                        .HasName("pk_agendamentos");
+                    b.HasKey("Id");
 
-                    b.HasIndex("PacienteId")
-                        .HasDatabaseName("ix_agendamentos_paciente_id");
+                    b.HasIndex("PacienteId");
 
-                    b.ToTable("agendamentos", (string)null);
+                    b.ToTable("Agendamentos");
                 });
 
             modelBuilder.Entity("Desafio1.Models.Paciente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("cpf");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("DataDeNascimento")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("data_de_nascimento");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("nome");
+                        .HasColumnType("text");
 
-                    b.HasKey("Id")
-                        .HasName("pk_pacientes");
+                    b.HasKey("Id");
 
-                    b.ToTable("pacientes", (string)null);
+                    b.ToTable("Pacientes");
                 });
 
             modelBuilder.Entity("Desafio1.Models.Agendamento", b =>
                 {
                     b.HasOne("Desafio1.Models.Paciente", "Paciente")
                         .WithMany("Agendamentos")
-                        .HasForeignKey("PacienteId")
-                        .HasConstraintName("fk_agendamentos_pacientes_paciente_id");
+                        .HasForeignKey("PacienteId");
 
                     b.Navigation("Paciente");
                 });

@@ -1,7 +1,9 @@
 ﻿using Desafio1.Models;
 using System.Collections.Generic;
 using System;
-using Desafio1.Data.Entity;
+using Desafio1.Data.Persistent;
+using Desafio1.Data.Persistent.DbConfig;
+
 
 namespace Desafio1.Data.NonPersistent
 {
@@ -17,7 +19,7 @@ namespace Desafio1.Data.NonPersistent
 
         public AgendamentoDao() {
             // _consultorio = new DefaultConsultorio();
-            _consultorio = new EntityConsultorio(PostgresConsultorioContext.Build());
+            _consultorio = new EntityConsultorio(new ConsultorioContextFactory().CreateDbContext());
         //    _consultorio = new EntityConsultorio(new EntityContext());
         }
 
