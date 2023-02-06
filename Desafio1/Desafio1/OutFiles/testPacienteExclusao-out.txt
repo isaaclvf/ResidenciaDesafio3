@@ -2,7 +2,7 @@ Menu Principal
 1-Cadastro de pacientes
 2-Agenda
 3-Fim
-Entrada Inv�lida. Digite Novamente
+Entrada Inválida. Digite Novamente
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
 2-Excluir paciente
@@ -13,7 +13,7 @@ Nome:
 CPF:
 Data de Nascimento:
 
-SUCESSO:	Paciente Cadastrado com Sucesso!
+ERRO:	Paciente já cadastrado
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
@@ -25,7 +25,7 @@ Nome:
 CPF:
 Data de Nascimento:
 
-SUCESSO:	Paciente Cadastrado com Sucesso!
+ERRO:	Paciente já cadastrado
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
@@ -35,7 +35,7 @@ Menu do Cadastro de Pacientes
 5-Voltar p / menu principal
 CPF:
 
-ERRO:	Paciente n�o cadastrado
+ERRO:	Paciente não cadastrado
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
@@ -45,7 +45,7 @@ Menu do Cadastro de Pacientes
 5-Voltar p / menu principal
 CPF:
 
-SUCESSO:	Paciente Exclu�do com Sucesso!
+SUCESSO:	Paciente Excluído com Sucesso!
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
@@ -86,7 +86,7 @@ Menu do Cadastro de Pacientes
 5-Voltar p / menu principal
 CPF:
 
-ERRO:	Paciente possui agendamento futuro
+SUCESSO:	Paciente Excluído com Sucesso!
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
