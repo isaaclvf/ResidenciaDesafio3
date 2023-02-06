@@ -30,11 +30,12 @@ namespace Desafio1.Models
                         || hour.Hora() == now.Hour && hour.Minuto() > now.Minute));
         }
 
-        // Dois Agendamentos são iguais se possuem interseção de horário
+        // Dois Agendamentos são iguais se possuem interseção de dia e Horario
         // Facilita na hora de adicionar um agendamento a um conjunto
         public override bool Equals(object obj)
         {
             return obj is Agendamento a && 
+                this.DataDaConsulta.Equals(a.DataDaConsulta) &&
                 ((this.HorarioInicial <= a.HorarioInicial && a.HorarioInicial < this.HorarioFinal)
                 || (this.HorarioInicial < a.HorarioFinal && a.HorarioFinal <= this.HorarioFinal));
         }
