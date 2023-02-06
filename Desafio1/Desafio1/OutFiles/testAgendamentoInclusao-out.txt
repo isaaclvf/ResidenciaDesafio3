@@ -2,7 +2,7 @@ Menu Principal
 1-Cadastro de pacientes
 2-Agenda
 3-Fim
-Entrada Inv†lida. Digite Novamente
+Entrada Inv√°lida. Digite Novamente
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
 2-Excluir paciente
@@ -47,7 +47,7 @@ Data da Consulta:
 Hora Inicial:
 Hora Final:
 
-ERRO:	Cpf do Paciente informado n∆o possui cadastro
+ERRO:	Cpf do Paciente informado n√£o possui cadastro
 
 Agenda
 1-Agendar consulta
@@ -56,13 +56,13 @@ Agenda
 4-Voltar p / menu principal
 CPF:
 Data da Consulta:
-Formato de data informado Ç inv†lido
+Formato de data informado √© inv√°lido
 Data da Consulta:
 Hora Inicial:
-Hora deve ter quatro d°gitos
+Hora deve ter quatro d√≠gitos
 Hora Inicial:
 Hora Final:
-Hora Final deve ser posterior Ö Hora Inicial
+Hora Final deve ser posterior √† Hora Inicial
 Hora Final:
 
 SUCESSO:	Consulta Agendada com Sucesso!
@@ -77,7 +77,7 @@ Data da Consulta:
 Hora Inicial:
 Hora Final:
 
-ERRO:	Paciente Informado j† possui agendamento futuro
+ERRO:	Paciente Informado j√° possui agendamento futuro
 
 Agenda
 1-Agendar consulta
@@ -89,7 +89,7 @@ Data da Consulta:
 Hora Inicial:
 Hora Final:
 
-ERRO:	Hor†rio j† preenchido
+ERRO:	Hor√°rio j√° preenchido
 
 Agenda
 1-Agendar consulta
@@ -107,10 +107,10 @@ Hora deve ser de 15 em 15 minutos
 Hora Inicial:
 Hora deve ser de 15 em 15 minutos
 Hora Inicial:
-Hora deve ser de 08:30 atÇ 19:00
+Hora deve ser de 08:30 at√© 19:00
 Hora Inicial:
 Hora Final:
-Hora deve ser de 08:30 atÇ 19:00
+Hora deve ser de 08:30 at√© 19:00
 Hora Final:
 
 SUCESSO:	Consulta Agendada com Sucesso!
