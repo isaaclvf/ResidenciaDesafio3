@@ -18,6 +18,11 @@ namespace Desafio1.Data.Persistent.EntityConfig
             builder
                 .Property(p => p.Cpf)
                 .IsRequired();
+
+            builder
+            .HasMany(p => p.Agendamentos)
+            .WithOne(a => a.Paciente)
+            .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
