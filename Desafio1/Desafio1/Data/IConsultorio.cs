@@ -26,5 +26,6 @@ namespace Desafio1.Data
         public bool DeleteAllAgendamentosFromPaciente(Paciente p);
 
         public bool IsAgendamentoCadastrado(Agendamento a);
+        public bool UpdatePaciente(string cpf, Agendamento a);
     }
 }

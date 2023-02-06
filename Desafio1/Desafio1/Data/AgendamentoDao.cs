@@ -31,20 +31,16 @@ namespace Desafio1.Data.NonPersistent
             if (_consultorio.IsAgendamentoCadastrado(a))
                 throw new Agendamento.InvalidAgendamentoException("Horário já preenchido");
 
-            // Preencher campo Agendamento Futuro do Paciente
-            var tmp = _consultorio.GetPacienteByCpf(a.CpfDoPaciente);
-            try
-            {
-                tmp.AgendamentoFuturo = a;
-            }catch(Exception)
-            {
-                throw new Agendamento.InvalidAgendamentoException("Paciente Informado já possui agendamento futuro");
-            }
+            var p = _consultorio.GetPacienteByCpf(a.CpfDoPaciente);
+            
             // Preencher campo Paciente do Agendamento
-            a.Paciente = tmp;
+            a.Paciente = p;
 
             // Adicionar Agendamento ao contexto de Dados
             _consultorio.AddAgendamento(a);
+
+            // Preencher campo Agendamento Futuro do Paciente
+            _consultorio.UpdatePaciente(p.Cpf, a);
         }
 
         public void Delete(string cpf, DateTime dataConsulta, ushort horaInicial)

@@ -67,5 +67,10 @@ namespace Desafio1.Data.NonPersistent
         {
             return _context.Agendamentos.Contains(a);
         }
+        
+        public bool UpdatePaciente(string p, Agendamento a)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

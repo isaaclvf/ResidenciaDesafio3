@@ -47,7 +47,7 @@ namespace Desafio1.Data.Persistent
 
         public IEnumerable<Paciente> GetAllPacientes()
         {
-            return Pacientes.ToList();
+            return Pacientes.Include("AgendamentoFuturo").ToList();
         }
         public bool AddAgendamento(Agendamento a)
         {
@@ -94,6 +94,20 @@ namespace Desafio1.Data.Persistent
         public bool IsAgendamentoCadastrado(Agendamento a)
         {
             return Agendamentos.Any(x => x.Equals(a));
+        }
+
+        public bool UpdatePaciente(string cpf, Agendamento a)
+        {
+            var p = this.GetPacienteByCpf(cpf);
+            try
+            {
+                p.AgendamentoFuturo = a;
+            }catch(Exception)
+            {
+                throw new Agendamento.InvalidAgendamentoException("Paciente Informado já possui agendamento futuro");
+            }
+            _context.SaveChanges();
+            return true;
         }
     }
 }
