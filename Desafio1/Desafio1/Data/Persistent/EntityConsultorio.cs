@@ -93,7 +93,7 @@ namespace Desafio1.Data.Persistent
 
         public bool IsAgendamentoCadastrado(Agendamento a)
         {
-            return Agendamentos.Any(x => x.Equals(a));
+            return Agendamentos.ToList().Any(x => a.Equals(x));
         }
 
         public bool UpdatePaciente(string cpf, Agendamento a)
@@ -102,12 +102,14 @@ namespace Desafio1.Data.Persistent
             try
             {
                 p.AgendamentoFuturo = a;
+                a.Paciente = p;
+                _context.SaveChanges();
+                return true;
             }catch(Exception)
             {
                 throw new Agendamento.InvalidAgendamentoException("Paciente Informado já possui agendamento futuro");
             }
-            _context.SaveChanges();
-            return true;
+
         }
     }
 }
