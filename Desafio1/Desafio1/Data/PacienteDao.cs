@@ -1,4 +1,5 @@
-﻿using Desafio1.Data.Entity;
+﻿using Desafio1.Data.Persistent;
+using Desafio1.Data.Persistent.DbConfig;
 using Desafio1.Models;
 using System.Collections.Generic;
 
@@ -16,7 +17,7 @@ namespace Desafio1.Data.NonPersistent
         public PacienteDao()
         {
             // _consultorio = new DefaultConsultorio();
-            _consultorio = new EntityConsultorio(PostgresConsultorioContext.Build());
+            _consultorio = new EntityConsultorio(new ConsultorioContextFactory().CreateDbContext());
             // _consultorio = new EntityConsultorio(new EntityContext());
         }
 

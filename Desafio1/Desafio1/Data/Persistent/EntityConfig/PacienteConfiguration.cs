@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Desafio1.Data.Persistent
+namespace Desafio1.Data.Persistent.EntityConfig
 {
     public class PacienteConfiguration : IEntityTypeConfiguration<Paciente>
     {

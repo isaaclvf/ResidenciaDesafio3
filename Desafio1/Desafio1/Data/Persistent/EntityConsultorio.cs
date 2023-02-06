@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace Desafio1.Data.Entity
+namespace Desafio1.Data.Persistent
 {
     public class EntityConsultorio : IConsultorio
     {
 
-        private EntityContext _context;
+        private ConsultorioContext _context;
 
         // Conjunto de Pacientes
         private DbSet<Paciente> Pacientes { get =>  _context.Pacientes;}
         // Conjunto de Agendamentos Ordenados
         private DbSet<Agendamento> Agendamentos { get =>  _context.Agendamentos;}
 
-        public EntityConsultorio(EntityContext context) 
+        public EntityConsultorio(ConsultorioContext context) 
         { 
             _context = context;
         }
@@ -28,7 +28,7 @@ namespace Desafio1.Data.Entity
 
             var tmp = Pacientes.Add(p).IsKeySet;
             _context.SaveChanges();
-            return tmp;
+            return !tmp;
         }
 
         public bool DeletePaciente(Paciente p)
@@ -46,7 +46,7 @@ namespace Desafio1.Data.Entity
         {
             var tmp = Agendamentos.Add(a).IsKeySet;
             _context.SaveChanges();
-            return tmp;
+            return !tmp;
         }
 
         public bool DeleteAgendamento(string cpf, DateTime date, ushort hour)
