@@ -1,4 +1,8 @@
-﻿using Desafio1.Views;
+﻿using Desafio1.Controllers;
+using Desafio1.Data.NonPersistent;
+using Desafio1.Models;
+using Desafio1.Data.Persistent;
+using Desafio1.Data.Persistent.DbConfig;
 
 namespace Desafio1
 {
@@ -6,7 +10,13 @@ namespace Desafio1
     {
         static void Main(string[] args)
         {
-            UserInterface.Start();
+            new MainController(
+                new Consultorio(
+                    new EntityConsultorio(
+                        new ConsultorioContextFactory().CreateDbContext()
+                    )
+                )
+            ).Start();
         }
     }
 }

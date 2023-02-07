@@ -19,19 +19,19 @@ namespace Desafio1.Views
         private readonly LA getDatas = new();
 
         // Referência a camada de Controladores
-        private readonly AgendamentoController ac = new();
+        // private readonly AgendamentoController ac = new();
 
         // Ler dados de Agendamento;
         // Tentar Agendar Consulta;
         // Relatar Erros ou Sucesso, dependendo do que ocorrer. 
-        public void AgendarConsulta()
+        public AgendamentoBuilder AgendarConsulta()
         {
             AgendamentoBuilder ab = new();
+
             try
             {
                 agendarConsulta.Read(ab);
-                ac.AgendarConsulta(ab);
-                Console.WriteLine("\nSUCESSO:\tConsulta Agendada com Sucesso!\n");
+                return ab;
             }
             catch (Agendamento.InvalidAgendamentoException e)
             {
@@ -41,20 +41,20 @@ namespace Desafio1.Views
             {
                 Console.WriteLine("\nFATAL:\tErro inesperado ocorreu\n");
             }
+            return null;
         }
 
         // Ler entradas de Agendamento - Cancelamento: Cpf do Paciente, Data da Consulta, Horario Inicial;
         // Tentar Cancelar Consulta;
         // Relatar Erros ou Sucesso, dependendo do que ocorrer. 
-        public void CancelarConsulta()
+        public AgendamentoBuilder CancelarConsulta()
         {
             AgendamentoBuilder ab = new();
 
             try
             {
                 cancelarAgendamento.Read(ab);
-                ac.CancelarConsulta(ab);
-                Console.WriteLine("\nSUCESSO:\tConsulta Cancelada com Sucesso!\n");
+                return ab;
             }
             catch (Agendamento.InvalidAgendamentoException e)
             {
@@ -64,22 +64,28 @@ namespace Desafio1.Views
             {
                 Console.WriteLine("\nFATAL:\tErro inesperado ocorreu\n");
             }
+            return null;
         }
 
-        public void ListarAgendaInteira()
+        public void ListarAgendaInteira(IEnumerable<Agendamento> agendamentos)
         {
-            ImprimirLista(ac.GetAgendamentos());
+            ImprimirLista(agendamentos);
         }
 
         // Ler entradas de Listagem de Agendamento Parcial: Data Incial, Data Final;
         // Imprimir Listagem de Agendamentos
-        public void ListarAgendaParcial()
+        public ListagemAgendamentoBuilder ListarAgendaParcial()
         {
             ListagemAgendamentoBuilder b = new();
 
             getDatas.Read(b);
 
-            var tmp = ac.GetAgendamentos()
+            return b;
+        }
+
+        public void ListarPacialmente(IEnumerable<Agendamento> agendamentos, ListagemAgendamentoBuilder b)
+        {
+            var tmp = agendamentos
                 .SkipWhile(x => x.DataDaConsulta < b.D1)
                 .TakeWhile(x => x.DataDaConsulta <= b.D2);
             ImprimirLista(tmp);
@@ -213,7 +219,7 @@ namespace Desafio1.Views
         }
 
         // Classe que valida os dados de entrada na Listagem Parcial de Agendamentos
-        private class ListagemAgendamentoBuilder
+        public class ListagemAgendamentoBuilder
         {
             public DateTime D1 { get; set; }
             public DateTime D2 { get; set; }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Desafio1.Data.Persistent
 {
-    public class EntityConsultorio : IConsultorio
+    public class EntityConsultorio : IConsultorio, IAgendamentoDao, IPacienteDao
     {
 
         private ConsultorioContext _context;
@@ -93,7 +93,7 @@ namespace Desafio1.Data.Persistent
 
         public bool IsAgendamentoCadastrado(Agendamento a)
         {
-            return Agendamentos.ToList().Any(x => a.Equals(x));
+            return Agendamentos.Any(x => a.Equals(x));
         }
 
         public bool UpdatePaciente(string cpf, Agendamento a)

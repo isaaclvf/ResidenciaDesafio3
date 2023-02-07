@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Desafio1.Data.NonPersistent
 {
-    public sealed class DefaultConsultorio : IConsultorio
+    public sealed class DefaultConsultorio : IAgendamentoDao, IPacienteDao
     {
         DefaultContext _context = DefaultContext.GetInstance();
 

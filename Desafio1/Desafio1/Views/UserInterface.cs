@@ -9,15 +9,10 @@ namespace Desafio1.Views
     public class UserInterface
     {
         // Referências a camada de Visualização 
-        private readonly static PacienteView pv = new();
-        private readonly static AgendamentoView av = new();
+        private readonly  PacienteView pv = new();
+        private readonly  AgendamentoView av = new();
 
-        public static void Start()
-        {
-            Menu();
-        }
-
-        private static void Menu()
+        public char Menu()
         {
             Console.WriteLine("Menu Principal\n1-Cadastro de pacientes\n2-Agenda\n3-Fim");
             var tmp = GetInput();
@@ -25,50 +20,52 @@ namespace Desafio1.Views
             switch(tmp)
             {
                 case '1':
-                    CadastroDePacientes();
-                    break;
+                    return CadastroDePacientes();
                 case '2':
-                    Agenda();
-                    break;
+                    return Agenda();
                 case '3':
-                    break;
+                    return '0';
                 default:
                     Erro();
-                    Menu();
+                    return Menu();
+            }
+        }
+
+        public void Show(int cod, string mensagem="")
+        {
+            switch(cod) {
+                case 0:
+                    Console.WriteLine($"\nSUCESSO:\t{mensagem}\n");
+                    break;
+                case 1:
+                    Console.WriteLine($"\nERRO:\t{mensagem}\n");
+                    break;
+                default:
+                    Console.WriteLine("\nFATAL:\tErro inesperado ocorreu\n");
                     break;
             }
         }
 
-        private static void CadastroDePacientes()
+
+        public  char CadastroDePacientes()
         {
             Console.WriteLine("Menu do Cadastro de Pacientes\n1-Cadastrar novo paciente\n2-Excluir paciente\n3-Listar pacientes(ordenado por CPF)\n4-Listar pacientes(ordenado por nome)\n5-Voltar p / menu principal");
             var tmp = GetInput();
 
             switch (tmp)
             {
-                case '1':
-                    pv.CadastrarPaciente();
-                    break;
-                case '2':
-                    pv.ExcluirPaciente();
-                    break;
-                case '3':
-                    pv.ListarPacientesPorCpf();
-                    break;
-                case '4':
-                    pv.ListarPacientesPorNome();
-                    break;
+                case '1' or '2' or '3' or '4':
+                    return tmp;
                 case '5':
-                    Menu();
-                    return;
+                    return Menu();
                 default:
                     Erro();
                     break;
             }
-            CadastroDePacientes();
+            return CadastroDePacientes();
         }
 
-        private static void Agenda()
+        public  char Agenda()
         {
             Console.WriteLine("Agenda\n1-Agendar consulta\n2-Cancelar agendamento\n3-Listar agenda\n4-Voltar p / menu principal");
             var tmp = GetInput();
@@ -76,25 +73,21 @@ namespace Desafio1.Views
             switch (tmp)
             {
                 case '1':
-                    av.AgendarConsulta();
-                    break;
+                    return '5';
                 case '2':
-                    av.CancelarConsulta();
-                    break;
+                    return '6';
                 case '3':
-                    ListagemDeAgendas();
-                    break;
+                    return ListagemDeAgendas();
                 case '4':
-                    Menu();
-                    return;
+                    return Menu();
                 default:
                     Erro();
                     break;
             }
-            Agenda();
+            return Agenda();
         }
 
-        private static void ListagemDeAgendas()
+        private  char ListagemDeAgendas()
         {
             Console.WriteLine("Apresentar a agenda T-Toda ou P-Periodo: P");
 
@@ -103,19 +96,16 @@ namespace Desafio1.Views
             switch (tmp)
             {
                 case 'T':
-                    av.ListarAgendaInteira();
-                    break;
+                    return '7';
                 case 'P':
-                    av.ListarAgendaParcial();
-                    break;
+                    return '8';
                 default:
                     Erro();
-                    ListagemDeAgendas();
-                    break;
+                    return ListagemDeAgendas();
             }
         }
 
-        private static char GetInput()
+        private  char GetInput()
         {
             var tmp = Console.ReadLine().Trim();
 
@@ -128,7 +118,7 @@ namespace Desafio1.Views
                 return tmp[0];
         }
 
-        private static void Erro()
+        private  void Erro()
         {
             Console.WriteLine("Entrada Inválida. Digite Novamente");
         }

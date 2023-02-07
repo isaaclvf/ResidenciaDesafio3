@@ -14,7 +14,7 @@ namespace Desafio1.Data.Persistent.DbConfig
 
         static ConsultorioContextFactory() 
         {
-            DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] {"./.env", System.IO.Directory.GetParent(Environment.CurrentDirectory).FullName + "/.env"}));
+            DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] {".env", System.IO.Directory.GetParent(Environment.CurrentDirectory).FullName + "/.env"}));
 
             Host     = Environment.GetEnvironmentVariable("HOST");
             Database = Environment.GetEnvironmentVariable("DATABASE");
@@ -24,23 +24,11 @@ namespace Desafio1.Data.Persistent.DbConfig
 
         }
 
-        // public static string Connection() 
-        // {
-        //     return $"Host={Host}:{Port};Database={Database};Username={Username};Password={Password}";
-        // }
-
-        // public static ConsultorioContext Build() 
-        // {
-        //     var contextOptions = new DbContextOptionsBuilder<ConsultorioContext>()
-        //     .UseNpgsql($"Host={Host}:{Port};Database={Database};Username={Username};Password={Password}")
-        //     .Options;
-        //     return new ConsultorioContext(contextOptions);
-        // }
-
         public ConsultorioContext CreateDbContext(string[] args=null)
         {
             var contextOptions = new DbContextOptionsBuilder<ConsultorioContext>()
             .UseNpgsql($"Host={Host}:{Port};Database={Database};Username={Username};Password={Password}")
+            // .UseSnakeCaseNamingConvention()
             .Options;
             return new ConsultorioContext(contextOptions);
         }
