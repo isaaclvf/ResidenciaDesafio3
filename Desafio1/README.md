@@ -29,7 +29,7 @@ docker compose up -d db
 
 #### Primeiro Uso: Atualizando as migrações no DB
 ```
-dotnet ef database update
+dotnet ef database update --project Desafio1
 ```
 
 ### Execute a aplicação.....
