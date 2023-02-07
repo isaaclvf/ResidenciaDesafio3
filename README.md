@@ -8,7 +8,7 @@ O diagrama abaixo representa a modelagem do código em camadas com suas respecti
 __OBS:__ Algumas classes criadas apenas para organização ou redução de código não estão representadas no diagrama.
 
 <p align="center">
-  <img src="diagrama.svg" alt="diagrama">
+  <img src="https://github.com/isaaclvf/ResidenciaDesafio3/blob/main/tmp.png" alt="diagrama">
 </p>
 
 ## Organização de Arquivos
