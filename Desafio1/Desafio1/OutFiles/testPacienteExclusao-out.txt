@@ -13,7 +13,7 @@ Nome:
 CPF:
 Data de Nascimento:
 
-ERRO:	Paciente já cadastrado
+SUCESSO:	Paciente Cadastrado com Sucesso!
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
@@ -25,7 +25,7 @@ Nome:
 CPF:
 Data de Nascimento:
 
-ERRO:	Paciente já cadastrado
+SUCESSO:	Paciente Cadastrado com Sucesso!
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
@@ -86,7 +86,7 @@ Menu do Cadastro de Pacientes
 5-Voltar p / menu principal
 CPF:
 
-SUCESSO:	Paciente Excluído com Sucesso!
+ERRO:	Paciente possui agendamento futuro
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente

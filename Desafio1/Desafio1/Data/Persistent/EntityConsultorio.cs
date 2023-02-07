@@ -93,7 +93,7 @@ namespace Desafio1.Data.Persistent
 
         public bool IsAgendamentoCadastrado(Agendamento a)
         {
-            return Agendamentos.Any(x => a.Equals(x));
+            return Agendamentos.ToList().Any(x => a.Equals(x));
         }
 
         public bool UpdatePaciente(string cpf, Agendamento a)

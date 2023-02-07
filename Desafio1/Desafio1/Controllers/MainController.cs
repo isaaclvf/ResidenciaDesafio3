@@ -94,7 +94,7 @@ namespace Desafio1.Controllers
             try {
                 action2(a);
                 _ui.Show(0, mensagem);
-            }catch (Paciente.InvalidPacienteException  e)
+            }catch (Agendamento.InvalidAgendamentoException  e)
             {
                 _ui.Show(1, e.Message);
             }
