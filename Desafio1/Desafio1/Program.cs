@@ -10,10 +10,14 @@ namespace Desafio1
     {
         static void Main(string[] args)
         {
-            new MainController(
-                new Consultorio(
-                    new EntityConsultorio(
-                        new ConsultorioContextFactory().CreateDbContext()
+            new MainController
+            (
+                new Consultorio
+                (
+                    new EntityConsultorio
+                    (
+                        new ConsultorioContextFactory()
+                        .CreateDbContext()
                     )
                 )
             ).Start();

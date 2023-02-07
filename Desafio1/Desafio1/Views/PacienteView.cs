@@ -34,7 +34,6 @@ namespace Desafio1.Views
             try
             {
                 excluirPaciente.Read(pb);
-                Console.WriteLine("\nSUCESSO:\tPaciente Excluído com Sucesso!\n");
                 return pb;
             }
             catch (Paciente.InvalidPacienteException e)
