@@ -6,9 +6,9 @@ namespace Desafio1.Models
 {
     public class Consultorio
     {
-        private readonly IConsultorio _consultorio;
+        private readonly IConsultorioDao _consultorio;
 
-        public Consultorio(IConsultorio consultorio)
+        public Consultorio(IConsultorioDao consultorio)
         {
             this._consultorio = consultorio;
         }

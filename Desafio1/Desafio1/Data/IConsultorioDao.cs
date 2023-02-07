@@ -3,5 +3,5 @@ using Desafio1.Models;
 
 namespace Desafio1.Data
 {
-    public interface IConsultorio : IPacienteDao, IAgendamentoDao{}
+    public interface IConsultorioDao : IPacienteDao, IAgendamentoDao{}
 }

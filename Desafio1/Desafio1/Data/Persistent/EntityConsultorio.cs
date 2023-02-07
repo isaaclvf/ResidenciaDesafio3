@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Desafio1.Data.Persistent
 {
-    public class EntityConsultorio : IConsultorio, IAgendamentoDao, IPacienteDao
+    public class EntityConsultorio : IConsultorioDao
     {
 
         private ConsultorioContext _context;
