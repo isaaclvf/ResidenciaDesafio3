@@ -2,6 +2,7 @@
 using System.Linq;
 using Desafio1.Models;
 using Desafio1.Controllers;
+using System.Collections.Generic;
 
 namespace Desafio1.Views
 {
@@ -10,15 +11,13 @@ namespace Desafio1.Views
         private readonly CP cadastrarPaciente = new();
         private readonly EP excluirPaciente = new();
 
-        private readonly PacienteController pc = new();
-        public void CadastrarPaciente()
+        public PacienteBuilder CadastrarPaciente()
         {
             PacienteBuilder pb = new();
             try
             {
                 cadastrarPaciente.Read(pb);
-                pc.CadastrarPaciente(pb);
-                Console.WriteLine("\nSUCESSO:\tPaciente Cadastrado com Sucesso!\n");
+                return pb;
             }catch(Paciente.InvalidPacienteException e)
             {
                 Console.WriteLine($"\nERRO:\t{e.Message}\n");
@@ -26,16 +25,16 @@ namespace Desafio1.Views
             {
                 Console.WriteLine("\nFATAL:\tErro inesperado ocorreu\n");
             }
+            return null;
         }
 
-        public void ExcluirPaciente()
+        public PacienteBuilder ExcluirPaciente()
         {
             PacienteBuilder pb = new();
             try
             {
                 excluirPaciente.Read(pb);
-                pc.ExcluirPaciente(pb);
-                Console.WriteLine("\nSUCESSO:\tPaciente Excluído com Sucesso!\n");
+                return pb;
             }
             catch (Paciente.InvalidPacienteException e)
             {
@@ -45,17 +44,18 @@ namespace Desafio1.Views
             {
                 Console.WriteLine("\nFATAL:\tErro inesperado ocorreu\n");
             }
+            return null;
         }
 
-        public void ListarPacientesPorCpf()
+        public void ListarPacientesPorCpf(IEnumerable<Paciente> pacientes)
         {
-            var tmp = pc.GetPacientes().OrderBy(x => x.Cpf);
+            var tmp = pacientes.OrderBy(x => x.Cpf);
             ImprimirLista(tmp);
         }
 
-        public void ListarPacientesPorNome()
+        public void ListarPacientesPorNome(IEnumerable<Paciente> pacientes)
         {
-            var tmp = pc.GetPacientes().OrderBy(x => x.Nome);
+            var tmp = pacientes.OrderBy(x => x.Nome);
             ImprimirLista(tmp);
         }
 

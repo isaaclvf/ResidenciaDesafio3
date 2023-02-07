@@ -8,8 +8,12 @@ namespace Desafio1.Data.Persistent.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Paciente> builder)
         {
-            builder
-                .Ignore(p => p.AgendamentoFuturo);
+            // builder
+            //     .Ignore(p => p.AgendamentoFuturo);
+
+             builder
+             .HasOne(p => p.AgendamentoFuturo);
+             
 
             builder
                 .Property(p => p.Nome)
@@ -18,6 +22,11 @@ namespace Desafio1.Data.Persistent.EntityConfig
             builder
                 .Property(p => p.Cpf)
                 .IsRequired();
+
+            builder
+            .HasMany(p => p.Agendamentos)
+            .WithOne(a => a.Paciente)
+            .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

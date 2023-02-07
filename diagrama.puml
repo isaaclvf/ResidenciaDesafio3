@@ -18,9 +18,28 @@ class pc as "Paciente" {
 class pcb as "  PacienteBuilder  " {
 Valida dados de Paciente
 }
+
+class "Consultorio" as c {
+
+        +AddPaciente(Paciente): bool
+
+        +DeletePaciente(Paciente): bool
+
+        +GetAllPacientes(): IEnumerable<Paciente> 
+
+        +AddAgendamento(Agendamento): bool
+
+        +DeleteAgendamento(ulong, DateTime, ushort): bool
+
+        +GetAllAgendamentos(): IEnumerable<Agendamento> 
+}
+
 }
 
 package Controller #7FFF00 {
+
+class "MainController" as mc {
+}
 
 class "AgendamentoController" as agc {
 Recebe os dados de AgendamentoView e os envia para 
@@ -66,8 +85,10 @@ Interage com o usuário por meio do console
 
 package Data #F9E4BC {
 
-interface "IConsultorio" as ic{
-Métodos Públicos para a manipulação dos Dados (Agendamentos e Pacientes)
+interface "IConsultorioDao" as icd {}
+
+interface "IPacienteDao" as ipd {
+Métodos Públicos para a manipulação dos Pacientes
 
         +AddPaciente(Paciente): bool
 
@@ -75,35 +96,27 @@ Métodos Públicos para a manipulação dos Dados (Agendamentos e Pacientes)
 
         +GetAllPacientes(): IEnumerable<Paciente> 
 
+        +CpfExists(ulong): bool
+
+        +GetPacienteByCpf(ulong): Paciente 
+}
+
+interface "IAgendamentoDao" as iad {
+Métodos Públicos para a manipulação dos Agendamentos
+
         +AddAgendamento(Agendamento): bool
 
         +DeleteAgendamento(ulong, DateTime, ushort): bool
 
         +GetAllAgendamentos(): IEnumerable<Agendamento> 
 
-        +CpfExists(ulong): bool
-
-        +GetPacienteByCpf(ulong): Paciente 
-
         +DeleteAllAgendamentosFromPaciente(Paciente): bool
 
         +IsAgendamentoCadastrado(Agendamento): bool
 }
 
-class "PacienteDao" as pd {
-Responsável pelo acesso aos dados dos Pacientes
-+Add()
-+Delete()
-+GetAll()
-}
-class "AgendamentoDao" as ad {
-Responsável pelo acesso aos dados dos Agendamentos
-+Add()
-+Delete()
-+GetAll()
-}
 
-package Entity {
+package Persistent {
 
 class "EntityConsultorio" as ce {
 }
@@ -128,31 +141,36 @@ tenham acesso aos mesmos dados**
 pcb o-down- pc
 agb o-down- ag
 
-ui *-down- av
-ui *-down- pv
-
-pcc *-- pd
-agc *-- ad
 
 dcc "1" *-- "n" pc
 dcc "1" *-- "n" ag
 cc "1" *-- "n" pc
 cc "1" *-- "n" ag
 
-pv *-- pcc
-av *-- agc
-
 
 pv *--  pcb
 av *-- agb
 
-pd *-- ic
-ad *-- ic
+c *-down- icd
 
-ic <-- dc
-ic <-- ce
+icd <-- dc
+icd <-- ce
 
-ce *-- cc
 dc *-- dcc
+ce *-- cc
+
+pcc o-down- c
+agc o-down- c
+
+mc *-up- ui
+mc *-down- pcc
+mc *-down- agc
+mc *-up- av
+mc *-up- pv
+
+ipd <-down- icd
+iad <-down- icd
+
+
 
 @enduml

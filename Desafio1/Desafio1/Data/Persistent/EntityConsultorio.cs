@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Desafio1.Data.Persistent
 {
-    public class EntityConsultorio : IConsultorio
+    public class EntityConsultorio : IConsultorioDao
     {
 
         private ConsultorioContext _context;
@@ -25,28 +25,36 @@ namespace Desafio1.Data.Persistent
 
         public bool AddPaciente(Paciente p)
         {
+            if(CpfExists(p.Cpf))
+                return false;
 
-            var tmp = Pacientes.Add(p).IsKeySet;
+            Pacientes.Add(p);
             _context.SaveChanges();
-            return !tmp;
+
+            return true;
         }
 
         public bool DeletePaciente(Paciente p)
         {
-            var tmp = Pacientes.Remove(p).IsKeySet;
+            if(!CpfExists(p.Cpf))
+                return false;
+
+            Pacientes.Remove(p);
             _context.SaveChanges();
-            return tmp;
+            
+            return true;
         }
 
         public IEnumerable<Paciente> GetAllPacientes()
         {
-            return Pacientes.ToList();
+            return Pacientes.Include("AgendamentoFuturo").ToList();
         }
         public bool AddAgendamento(Agendamento a)
         {
-            var tmp = Agendamentos.Add(a).IsKeySet;
+            Agendamentos.Add(a);
             _context.SaveChanges();
-            return !tmp;
+            
+            return true;
         }
 
         public bool DeleteAgendamento(string cpf, DateTime date, ushort hour)
@@ -85,7 +93,23 @@ namespace Desafio1.Data.Persistent
 
         public bool IsAgendamentoCadastrado(Agendamento a)
         {
-            return Agendamentos.Contains(a);
+            return Agendamentos.ToList().Any(x => a.Equals(x));
+        }
+
+        public bool UpdatePaciente(string cpf, Agendamento a)
+        {
+            var p = this.GetPacienteByCpf(cpf);
+            try
+            {
+                p.AgendamentoFuturo = a;
+                a.Paciente = p;
+                _context.SaveChanges();
+                return true;
+            }catch(Exception)
+            {
+                throw new Agendamento.InvalidAgendamentoException("Paciente Informado já possui agendamento futuro");
+            }
+
         }
     }
 }

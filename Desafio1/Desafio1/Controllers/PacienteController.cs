@@ -8,7 +8,12 @@ namespace Desafio1.Controllers
     public class PacienteController
     {
         // Referência a camada de dados
-        private readonly PacienteDao _pacienteDao = new();
+        private readonly Consultorio _consultorio;
+
+        public PacienteController(Consultorio c)
+        {
+            _consultorio = c;
+        }
 
         // Cria um Agendamento com os dados passados e Chama o respectivo método da camada de dados
         public void CadastrarPaciente(PacienteBuilder pb)
@@ -16,7 +21,7 @@ namespace Desafio1.Controllers
             try
             {
                 var paciente = pb.Build();
-                _pacienteDao.Add(paciente);
+                _consultorio.AddPaciente(paciente);
             }
             // Escreve as Exceções não esperadas em stderr
             catch (Exception e) when (e is not Paciente.InvalidPacienteException)
@@ -30,7 +35,7 @@ namespace Desafio1.Controllers
         {
             try
             {
-                _pacienteDao.Delete(pb.Cpf);
+                _consultorio.DeletePaciente(pb.Cpf);
             }
             // Escreve as Exceções não esperadas em stderr
             catch (Exception e) when (e is not Paciente.InvalidPacienteException)
@@ -42,7 +47,7 @@ namespace Desafio1.Controllers
 
         public IEnumerable<Paciente> GetPacientes()
         {
-            return _pacienteDao.GetAll();
+            return _consultorio.GetAllPacientes();
         }
     }
 }

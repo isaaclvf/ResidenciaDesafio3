@@ -3,6 +3,7 @@ using System;
 using Desafio1.Data.Persistent;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Desafio1.Migrations
 {
     [DbContext(typeof(ConsultorioContext))]
-    partial class ConsultorioContextModelSnapshot : ModelSnapshot
+    [Migration("20230206161530_Deleção em Cascata")]
+    partial class DeleçãoemCascata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,9 +64,6 @@ namespace Desafio1.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AgendamentoFuturoId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnType("text");
@@ -77,8 +77,6 @@ namespace Desafio1.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AgendamentoFuturoId");
-
                     b.ToTable("Pacientes");
                 });
 
@@ -87,18 +85,9 @@ namespace Desafio1.Migrations
                     b.HasOne("Desafio1.Models.Paciente", "Paciente")
                         .WithMany("Agendamentos")
                         .HasForeignKey("PacienteId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Paciente");
-                });
-
-            modelBuilder.Entity("Desafio1.Models.Paciente", b =>
-                {
-                    b.HasOne("Desafio1.Models.Agendamento", "AgendamentoFuturo")
-                        .WithMany()
-                        .HasForeignKey("AgendamentoFuturoId");
-
-                    b.Navigation("AgendamentoFuturo");
                 });
 
             modelBuilder.Entity("Desafio1.Models.Paciente", b =>

@@ -2,7 +2,7 @@ Menu Principal
 1-Cadastro de pacientes
 2-Agenda
 3-Fim
-Entrada Inv†lida. Digite Novamente
+Entrada Inv√°lida. Digite Novamente
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
 2-Excluir paciente
@@ -46,7 +46,7 @@ CPF:
 Data da Consulta:
 Hora Inicial:
 
-ERRO:	Agendamento n∆o cadastrado
+ERRO:	Agendamento n√£o cadastrado
 
 Agenda
 1-Agendar consulta
@@ -59,7 +59,7 @@ Data da Consulta deve ser futura
 Data da Consulta:
 Hora Inicial:
 
-ERRO:	Agendamento n∆o cadastrado
+ERRO:	Agendamento n√£o cadastrado
 
 Agenda
 1-Agendar consulta
@@ -70,7 +70,7 @@ CPF:
 Data da Consulta:
 Hora Inicial:
 
-ERRO:	Agendamento n∆o cadastrado
+ERRO:	Agendamento n√£o cadastrado
 
 Agenda
 1-Agendar consulta
@@ -81,7 +81,7 @@ CPF:
 Data da Consulta:
 Hora Inicial:
 
-ERRO:	Agendamento n∆o cadastrado
+ERRO:	Agendamento n√£o cadastrado
 
 Agenda
 1-Agendar consulta

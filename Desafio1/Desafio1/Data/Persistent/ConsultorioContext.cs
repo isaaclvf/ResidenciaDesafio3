@@ -14,11 +14,6 @@ namespace Desafio1.Data.Persistent
 
         public ConsultorioContext(DbContextOptions<ConsultorioContext> options) : base(options) {}
 
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //     optionsBuilder.UseNpgsql(PostgresContextBuilder.Connection());
-        // }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AgendamentoConfiguration());

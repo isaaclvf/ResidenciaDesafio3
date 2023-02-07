@@ -2,7 +2,7 @@ Menu Principal
 1-Cadastro de pacientes
 2-Agenda
 3-Fim
-Entrada Inv lida. Digite Novamente
+Entrada InvÃ¡lida. Digite Novamente
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
 2-Excluir paciente
@@ -103,14 +103,14 @@ Menu do Cadastro de Pacientes
 ---------------------------------------------------------
 CPF          Nome                       Dt.Nasc.    Idade
 ---------------------------------------------------------
-06360232812  Pedro Amaral              01/01/2000      22
-             Agendado para: 01/01/2023
-             08:30 …s 09:00
-27260714573  ZÃ© Colmeia               01/01/2008      14
-34939840735  Catatau                   01/01/1985      37
-74752305208  Augusto da Silva          01/01/1993      29
-             Agendado para: 01/01/2023
-             09:00 …s 11:00
+06360232812  Pedro Amaral              01/01/2000      23
+             Agendado para: 01/03/2023
+             08:30 Ã s 09:00
+27260714573  ZÃ© Colmeia                01/01/2008      15
+34939840735  Catatau                   01/01/1985      38
+74752305208  Augusto da Silva          01/01/1993      30
+             Agendado para: 01/03/2023
+             09:00 Ã s 11:00
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
@@ -121,14 +121,14 @@ Menu do Cadastro de Pacientes
 ---------------------------------------------------------
 CPF          Nome                       Dt.Nasc.    Idade
 ---------------------------------------------------------
-74752305208  Augusto da Silva          01/01/1993      29
-             Agendado para: 01/01/2023
-             09:00 …s 11:00
-34939840735  Catatau                   01/01/1985      37
-06360232812  Pedro Amaral              01/01/2000      22
-             Agendado para: 01/01/2023
-             08:30 …s 09:00
-27260714573  ZÃ© Colmeia               01/01/2008      14
+74752305208  Augusto da Silva          01/01/1993      30
+             Agendado para: 01/03/2023
+             09:00 Ã s 11:00
+34939840735  Catatau                   01/01/1985      38
+06360232812  Pedro Amaral              01/01/2000      23
+             Agendado para: 01/03/2023
+             08:30 Ã s 09:00
+27260714573  ZÃ© Colmeia                01/01/2008      15
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente

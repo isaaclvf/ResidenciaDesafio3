@@ -8,7 +8,12 @@ namespace Desafio1.Controllers
     public class AgendamentoController
     {
         // Referência a camada de dados
-        private readonly AgendamentoDao _agendamentoDao = new();
+        private readonly Consultorio _consultorio;
+
+        public AgendamentoController(Consultorio c)
+        {
+            _consultorio = c;
+        }
 
         public void AgendarConsulta(AgendamentoBuilder ab)
         {
@@ -18,7 +23,7 @@ namespace Desafio1.Controllers
                 var agendamento = ab.Build();
 
                 // Chama o respectivo método da camada de dados
-                _agendamentoDao.Add(agendamento);
+                _consultorio.AddAgendamento(agendamento);
             }
             // Escreve as Exceções não esperadas em stderr
             catch (Exception e) when (e is not Agendamento.InvalidAgendamentoException)
@@ -33,7 +38,7 @@ namespace Desafio1.Controllers
         {
             try
             {
-                _agendamentoDao.Delete(ab.Cpf, ab.DataDaConsulta, ab.HorarioInicial);
+                _consultorio.DeleteAgendamento(ab.Cpf, ab.DataDaConsulta, ab.HorarioInicial);
             }
             // Escreve as Exceções não esperadas em stderr
             catch (Exception e) when (e is not Agendamento.InvalidAgendamentoException)
@@ -45,7 +50,7 @@ namespace Desafio1.Controllers
 
         public IEnumerable<Agendamento> GetAgendamentos()
         {
-            return _agendamentoDao.GetAll();
+            return _consultorio.GetAllAgendamentos();
         }
     }
 }

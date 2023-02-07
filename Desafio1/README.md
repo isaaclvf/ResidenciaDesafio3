@@ -1,7 +1,22 @@
-## Executar DB Localmente (Docker Compose)
+## Executando
 
-### Executando o DB
-Substituir os campos entre "[]" pelos valores desejado
+### Conexão com o DB
+Para conectar-se a um banco de dados, crie um arquivo __.env__ em um dos seguintes diretórios:
+* __ResidenciaDesafio3/Desafio1__ _(este diretório)_
+* __ResidenciaDesafio3/Desafio1/Desafio1__
+
+O arquivo deverá ter as seguintes variáveis:
+
+```bash
+HOST=[host]
+DATABASE=[database]
+USERNAME=[username]
+PASSWORD=[password]
+PORT=[port]
+```
+### Executando DB Localmente
+
+Crie um arquivo __.env__ no diretório __ResidenciaDesafio3/Desafio1__ _(este diretório)_ da seguinte forma e execute o banco de dados via __docker compose__.
 
 ```bash
 echo "HOST=localhost
@@ -13,38 +28,8 @@ docker compose up -d db
 ```
 
 #### Primeiro Uso: Atualizando as migrações no DB
-```bash
-dotnet ef database update
+```
+dotnet ef database update --project Desafio1
 ```
 
-#### Acessando o postgres via psql
-```bash
-docker exec -it postgres-container psql -U [username] -d [database]
-```
-#### Ver todas as tabelas
-```
-\dt
-```
-#### Comandos SQL são aceitos no PSQL
-```sql
-select * from [table];
-``` 
-
-### Executando o DB com PGAdimin
-Substituir os campos entre "[]" pelos valores desejado <br>
-**Obs:** O email não precisa ser válido.
-
-```bash
-echo "HOST=localhost
-DATABASE=[database]
-USERNAME=[username]
-PASSWORD=[password]
-PORT=[port]
-PGADMIN_PORT=[other_port]
-PGADMIN_PASSWORD=[password]
-PGADMIN_EMAIL=[email]" > .env
-docker compose up -d
-```
-
-Acessar no browser __localhost:[PGADMIN_PORT]__, logar com __[PGADMIN_EMAIL]__ e __[PGADMIN_PASSWORD]__
-
+### Execute a aplicação.....

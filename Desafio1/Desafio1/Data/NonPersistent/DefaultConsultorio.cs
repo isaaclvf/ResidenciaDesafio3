@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Desafio1.Data.NonPersistent
 {
-    public sealed class DefaultConsultorio : IConsultorio
+    public sealed class DefaultConsultorio : IConsultorioDao
     {
         DefaultContext _context = DefaultContext.GetInstance();
 
@@ -66,6 +66,11 @@ namespace Desafio1.Data.NonPersistent
         public bool IsAgendamentoCadastrado(Agendamento a)
         {
             return _context.Agendamentos.Contains(a);
+        }
+        
+        public bool UpdatePaciente(string p, Agendamento a)
+        {
+            throw new NotImplementedException();
         }
     }
 }

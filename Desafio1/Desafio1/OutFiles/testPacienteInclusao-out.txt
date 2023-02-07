@@ -2,7 +2,7 @@ Menu Principal
 1-Cadastro de pacientes
 2-Agenda
 3-Fim
-Entrada Inv†lida. Digite Novamente
+Entrada Inv√°lida. Digite Novamente
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
 2-Excluir paciente
@@ -13,10 +13,10 @@ Nome:
 Nome do Paciente deve ter ao menos 5 caracteres
 Nome:
 CPF:
-Cpf do Paciente deve ter d°gitos verficadores v†lidos
+Cpf do Paciente deve ter d√≠gitos verficadores v√°lidos
 CPF:
 Data de Nascimento:
-Formato de data informado Ç inv†lido
+Formato de data informado √© inv√°lido
 Data de Nascimento:
 
 SUCESSO:	Paciente Cadastrado com Sucesso!
@@ -33,7 +33,7 @@ Data de Nascimento:
 Idade do cliente deve ser maior ou igual a 13
 Data de Nascimento:
 
-ERRO:	Paciente j† cadastrado
+ERRO:	Paciente j√° cadastrado
 
 Menu do Cadastro de Pacientes
 1-Cadastrar novo paciente
