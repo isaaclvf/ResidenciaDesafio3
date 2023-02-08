@@ -9,8 +9,8 @@ namespace Desafio1.Views
     public class UserInterface
     {
         // Referências a camada de Visualização 
-        private readonly  PacienteView pv = new();
-        private readonly  AgendamentoView av = new();
+        private readonly  PacienteView pacienteView = new();
+        private readonly  AgendamentoView agendamentoView = new();
 
         public char Menu()
         {

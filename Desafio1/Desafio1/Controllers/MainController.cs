@@ -8,18 +8,18 @@ namespace Desafio1.Controllers
     {
         private readonly UserInterface _ui = new();
 
-        PacienteController _pc;
+        PacienteController _pacienteController;
 
-        AgendamentoController _ac;
+        AgendamentoController _agendamentoController;
 
-        AgendamentoView _av = new();
+        AgendamentoView _agendamentoView = new();
 
-        PacienteView _pv = new();
+        PacienteView _pacienteView = new();
 
         public MainController(Consultorio consultorio)
         {
-            _pc = new(consultorio);
-            _ac = new(consultorio);
+            _pacienteController = new(consultorio);
+            _agendamentoController = new(consultorio);
         }
 
         public void Start() 
@@ -32,36 +32,36 @@ namespace Desafio1.Controllers
             switch(tmp) 
             {
                 case '1':
-                    HelperPaciente(_pv.CadastrarPaciente, _pc.CadastrarPaciente, "Paciente Cadastrado com Sucesso!");
+                    HelperPaciente(_pacienteView.CadastrarPaciente, _pacienteController.CadastrarPaciente, "Paciente Cadastrado com Sucesso!");
                     t = _ui.CadastroDePacientes();
                     break;
                 case '2':
-                    HelperPaciente(_pv.ExcluirPaciente, _pc.ExcluirPaciente, "Paciente Excluído com Sucesso!");
+                    HelperPaciente(_pacienteView.ExcluirPaciente, _pacienteController.ExcluirPaciente, "Paciente Excluído com Sucesso!");
                     t = _ui.CadastroDePacientes();
                     break;
                 case '3':
-                    _pv.ListarPacientesPorCpf(_pc.GetPacientes());
+                    _pacienteView.ListarPacientesPorCpf(_pacienteController.GetPacientes());
                     t = _ui.CadastroDePacientes();
                     break;
                 case '4':
-                    _pv.ListarPacientesPorNome(_pc.GetPacientes());
+                    _pacienteView.ListarPacientesPorNome(_pacienteController.GetPacientes());
                     t = _ui.CadastroDePacientes();
                     break;
                  case '5':
-                    HelperAgendamento(_av.AgendarConsulta, _ac.AgendarConsulta, "Consulta Agendada com Sucesso!");
+                    HelperAgendamento(_agendamentoView.AgendarConsulta, _agendamentoController.AgendarConsulta, "Consulta Agendada com Sucesso!");
                     t = _ui.Agenda();
                     break;
                 case '6':
-                    HelperAgendamento(_av.CancelarConsulta, _ac.CancelarConsulta, "Consulta Cancelada com Sucesso!");
+                    HelperAgendamento(_agendamentoView.CancelarConsulta, _agendamentoController.CancelarConsulta, "Consulta Cancelada com Sucesso!");
                     t = _ui.Agenda();
                     break;
                 case '7':
-                    _av.ListarAgendaInteira(_ac.GetAgendamentos());
+                    _agendamentoView.ListarAgendaInteira(_agendamentoController.GetAgendamentos());
                     t = _ui.Agenda();
                     break;
                 case '8':
-                    var x = _av.ListarAgendaParcial();
-                    _av.ListarPacialmente(_ac.GetAgendamentos(), x);
+                    var x = _agendamentoView.ListarAgendaParcial();
+                    _agendamentoView.ListarPacialmente(_agendamentoController.GetAgendamentos(), x);
                     t = _ui.Agenda();
                     break;
                 default:
